@@ -1,9 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
 
-
-
-
-*{
-    margin: 0;
-    padding:0 ; 
-    box-sizing: border-box;
+:root{
+    --background-shadow: rgba(255,255,255,.12);
+    --background-color: #122e3a;
+    --border-color: rgba(255,255,255,.12);
+    --font-color1 : #9974ff;
+    --font-shadow: rgba(240, 105, 228, 0.5);
 }
+body {
+    background-image: url('Image/Background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    margin: 0;
+    position: relative; 
+}
+
+* {
+    margin: 0;
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Black Ops One', sans-serif;
+}
+
+.planet {
+    position: absolute;
+    background: none;
+    border: none; /* Removes default button outline boxes around images */
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.planet:hover{
+    transform: scale(1.15);
+}
+
+.top-left {
+    top: 250px;
+    left: 550px;
+}
+.top-right {
+    top: 200px;
+    right: 200px;
+}
+.bottom-left {
+    bottom: 250px;
+    left: 200px;
+}
+.bottom-right {
+    bottom: 250px;
+    right: 450px;
+}
+
+/* model */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: var(--background-shadow);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .28s ease;
+}
+
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+
+.modal-box {
+  background: var(--background-color);
+  border: 2px solid var(--border-color);
+  border-radius: 20px;
+  padding: 40px 48px 48px;
+  width: min(680px, 92vw);
+  max-height: 82vh;
+  overflow-y: auto;
+  color: #e8f4f7;
+  font-family: sans-serif; 
+  box-shadow: 0 20px 70px rgba(0,0,0,.55);
+  transform: translateY(30px);
+  transition: transform .28s ease;
+  position: relative;
+}
+
+.modal-overlay.open .modal-box { transform: translateY(0); }
+
+.modal-box h2 {
+  font-family: 'Caveat', cursive;
+  font-size: 3rem; color: var(--font-color1);
+  text-shadow: 0 0 14px var( --font-shadow);
+  margin-bottom: 24px;
+}
+
+.modal-close {
+  position: absolute; top: 16px; right: 20px;
+  background: none; border: none; color: rgba(255,255,255,.45);
+  font-size: 1.6rem; cursor: pointer; line-height: 1;
+  transition: color .18s;
+}
+
+.modal-close:hover { color: #fff; }
