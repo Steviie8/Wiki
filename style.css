@@ -63,6 +63,16 @@ body {
     bottom: 24%;
     right: 37%;
 }
+.insta{
+    top: 2%;
+    left: 2%;
+}
+
+.link{
+    top: 15%;
+    left: 2%;
+
+}
 
 /* model */
 .modal-overlay {
