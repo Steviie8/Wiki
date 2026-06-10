@@ -10,19 +10,23 @@
 <body>
 
     <button type="button" class="planet top-left" onclick="openModal('rccarModal')">
-        <img src="Image/Planet.png" alt="RC Car" style="width: 50px; height: 50px;">
+        <img src="Image/blue.png" alt="RC Car" style="width: 225px; height: 225px;">
     </button>
 
     <button type="button" class="planet top-right" onclick="openModal('MechanicalArmModal')">
-        <img src="Image/Planet.png" alt="Mechanical Arm" style="width: 50px; height: 50px;">
+        <img src="Image/pruple.png" alt="Mechanical Arm" style="width: 250px; height: 250px;">
     </button>
 
     <button type="button" class="planet bottom-left" onclick="openModal('ScreenModal')">
-        <img src="Image/Planet.png" alt="Screen" style="width: 50px; height: 50px;">
+        <img src="Image/brown.png" alt="Screen" style="width: 350px; height: 350px;">
     </button>
 
     <button type="button" class="planet bottom-right" onclick="openModal('VideoGamesModal')">
-        <img src="Image/Planet.png" alt="Game Jam" style="width: 50px; height: 50px;">
+        <img src="Image/turquoise.png" alt="Game Jam" style="width: 300px; height: 300px;">
+    </button>
+
+    <button type="button" class="planet sun" onclick="openModal('aboutMeModel')">
+        <img src="Image/sun.png" alt="About Me" style="width: 500px; height: 500px;">
     </button>
 
     <div class="modal-overlay" id="rccarModal">
@@ -53,6 +57,13 @@
         </div>
     </div>
 
+
+    <div class="modal-overlay" id="aboutMeModel">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('aboutMeModel')">✕</button>
+            <h2>About me</h2>
+        </div>
+    </div>
     <script>
         function openModal(modalId) {
             document.getElementById(modalId).classList.add('open');

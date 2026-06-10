@@ -36,21 +36,32 @@ body {
     transform: scale(1.15);
 }
 
+
+.top-left img {
+    width: 18vw;       
+    min-width: 100px;  
+    max-width: 250px;  
+}
+
 .top-left {
-    top: 250px;
-    left: 550px;
+    top: 17%;
+    left: 32%;
 }
 .top-right {
-    top: 200px;
-    right: 200px;
+    top: 6%;
+    right: 5%;
 }
 .bottom-left {
-    bottom: 250px;
-    left: 200px;
+    bottom: 14%;
+    left: 10%;
 }
 .bottom-right {
-    bottom: 250px;
-    right: 450px;
+    bottom: 10%;
+    right: 25%;
+}
+.sun{
+    bottom: 24%;
+    right: 37%;
 }
 
 /* model */
