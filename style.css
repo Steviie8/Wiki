@@ -44,28 +44,28 @@ body {
 }
 
 .top-left {
-    top: 17%;
+    top: 16%;
     left: 32%;
 }
 .top-right {
-    top: 6%;
-    right: 5%;
+    top: 0%;
+    right: 2%;
 }
 .bottom-left {
     bottom: 14%;
     left: 10%;
 }
 .bottom-right {
-    bottom: 10%;
-    right: 25%;
+    bottom: 8%;
+    right: 20%;
 }
 .sun{
-    bottom: 24%;
-    right: 37%;
+    bottom:16%;
+    right: 33%;
 }
 .insta{
     top: 2%;
-    left: 2%;
+    left: 3%;
 }
 
 .link{
@@ -73,7 +73,23 @@ body {
     left: 2%;
 
 }
+.tiktok{
+    top: 0.5%;
+    left: 9.5%;
 
+}
+.sun-button {
+    clip-path: circle(40% at 50% 50%); 
+    transition: none !important;
+}
+
+.sun-button:hover img {
+    transform: scale(1.15);
+    transition: transform 0.2s ease;
+}
+.sun-button:hover {
+    transform: none !important;
+}
 /* model */
 .modal-overlay {
   position: fixed; inset: 0; z-index: 200;
@@ -102,6 +118,7 @@ body {
   position: relative;
 }
 
+
 .modal-overlay.open .modal-box { transform: translateY(0); }
 
 .modal-box h2 {
@@ -111,6 +128,12 @@ body {
   margin-bottom: 24px;
 }
 
+.modal-box h3 {
+  font-family:'Caveat',cursive;
+   font-size:1.55rem;
+    color:#18bb8a;
+     margin-bottom:4px;
+}
 .modal-close {
   position: absolute; top: 16px; right: 20px;
   background: none; border: none; color: rgba(255,255,255,.45);
@@ -119,3 +142,12 @@ body {
 }
 
 .modal-close:hover { color: #fff; }
+
+#aboutMeModel .modal-box h2 {
+    color: #0fbad8fa; 
+    text-shadow: 0 0 14px rgba(0, 210, 255, 0.5); 
+}
+
+#aboutMeModel .modal-box {
+    color: #a8def0; 
+}

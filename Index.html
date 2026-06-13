@@ -10,11 +10,11 @@
 <body>
 
     <button type="button" class="planet top-left" onclick="openModal('rccarModal')">
-        <img src="Image/blue.png" alt="RC Car" style="width: 225px; height: 225px;">
+        <img src="Image/blue.png" alt="RC Car" style="width: 250px; height: 250px;">
     </button>
 
     <button type="button" class="planet top-right" onclick="openModal('MechanicalArmModal')">
-        <img src="Image/pruple.png" alt="Mechanical Arm" style="width: 250px; height: 250px;">
+        <img src="Image/pruple.png" alt="Mechanical Arm" style="width: 350px; height: 350;">
     </button>
 
     <button type="button" class="planet bottom-left" onclick="openModal('ScreenModal')">
@@ -22,11 +22,11 @@
     </button>
 
     <button type="button" class="planet bottom-right" onclick="openModal('VideoGamesModal')">
-        <img src="Image/turquoise.png" alt="Game Jam" style="width: 300px; height: 300px;">
+        <img src="Image/turquoise.png" alt="Game Jam" style="width: 400px; height: 400px;">
     </button>
 
-    <button type="button" class="planet sun" onclick="openModal('aboutMeModel')">
-        <img src="Image/sun.png" alt="About Me" style="width: 500px; height: 500px;">
+    <button type="button" class="planet sun sun-button" onclick="openModal('aboutMeModel')">
+    <img src="Image/sun.png" alt="About Me" style="width: 650px; height: 650;">
     </button>
     <a href="https://www.instagram.com/steviie_88/">
     <button type="button" class="planet insta" style="border: none; background: none; padding: 0; cursor: pointer;"> 
@@ -37,6 +37,11 @@
     <a href="https://www.linkedin.com/in/steven-xu-812a9b301/">
     <button type="button" class="planet link" style="border: none; background: none; padding: 0; cursor: pointer;"> 
         <img src="Image/linkedin.png" alt="linkedin" style="width: 125px; height: 125px;"> 
+    </button>
+    </a>
+    <a href="https://www.tiktok.com/@steviie_">
+    <button type="button" class="planet tiktok" style="border: none; background: none; padding: 0; cursor: pointer;"> 
+        <img src="Image/tiktok.png" alt="tiktok" style="width: 125px; height: 125px;"> 
     </button>
     </a>
 
@@ -70,11 +75,13 @@
 
 
     <div class="modal-overlay" id="aboutMeModel">
-        <div class="modal-box">
-            <button class="modal-close" onclick="closeModal('aboutMeModel')">✕</button>
-            <h2>About me</h2>
-        </div>
+    <div class="modal-box">
+        <button class="modal-close" onclick="closeModal('aboutMeModel')">✕</button>
+        <h2>About me</h2>
+        <h3>Hi, I'm Steven</h3>
+        <p>! I love robotics, game development, and building cool things.</p>
     </div>
+</div>
     <script>
         function openModal(modalId) {
             document.getElementById(modalId).classList.add('open');
