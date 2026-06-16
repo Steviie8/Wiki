@@ -10,25 +10,25 @@
 <body>
     <audio id="swooshSound" src="Audio/swoosh2.mp3" preload="auto"></audio>
     <div id="screen-takeover"></div>
-    <button type="button" class="planet top-left" onclick="openModal('rccarModal')">
-        <img src="Image/blue.png" alt="RC Car" style="width: 250px; height: 250px;">
-    </button>
+    <button type="button" class="planet top-left" onclick="openModal('rccarModal', this)">
+    <img src="Image/blue.png" alt="RC Car" style="width: 250px; height: 250px;">
+</button>
 
-    <button type="button" class="planet top-right" onclick="openModal('MechanicalArmModal')">
-        <img src="Image/pruple.png" alt="Mechanical Arm" style="width: 350px; height: 350;">
-    </button>
+<button type="button" class="planet top-right" onclick="openModal('MechanicalArmModal', this)">
+    <img src="Image/pruple.png" alt="Mechanical Arm" style="width: 350px; height: 350px;">
+</button>
 
-    <button type="button" class="planet bottom-left" onclick="openModal('ScreenModal')">
-        <img src="Image/brown.png" alt="Screen" style="width: 350px; height: 350px;">
-    </button>
+<button type="button" class="planet bottom-left" onclick="openModal('ScreenModal', this)">
+    <img src="Image/brown.png" alt="Screen" style="width: 350px; height: 350px;">
+</button>
 
-    <button type="button" class="planet bottom-right" onclick="openModal('VideoGamesModal')">
-        <img src="Image/turquoise.png" alt="Game Jam" style="width: 400px; height: 400px;">
-    </button>
+<button type="button" class="planet bottom-right" onclick="openModal('VideoGamesModal', this)">
+    <img src="Image/turquoise.png" alt="Game Jam" style="width: 400px; height: 400px;">
+</button>
 
-    <button type="button" class="planet sun sun-button" onclick="openModal('aboutMeModel')">
-    <img src="Image/sun.png" alt="About Me" style="width: 650px; height: 650;">
-    </button>
+<button type="button" class="planet sun sun-button" onclick="openModal('aboutMeModel', this)">
+    <img src="Image/sun.png" alt="About Me" style="width: 650px; height: 650px;">
+</button>
     <a href="https://www.instagram.com/steviie_88/">
     <button type="button" class="planet insta" style="border: none; background: none; padding: 0; cursor: pointer;"> 
         <img src="Image/insta.png" alt="insta" style="width: 100px; height: 100px;"> 
@@ -87,11 +87,11 @@
 </div>
     <script>
     const colorMap = {
-        'rccarModal': '#1a5fb4',          
-        'MechanicalArmModal': '#6f32a8',  
-        'ScreenModal': '#865439',        
-        'VideoGamesModal': '#20b2aa',     
-        'aboutMeModel': '#CF652D'         
+        'rccarModal': '#1a5fb4',          // Blue
+        'MechanicalArmModal': '#6f32a8',  // Purple
+        'ScreenModal': '#865439',         // Brown
+        'VideoGamesModal': '#20b2aa',     // Turquoise
+        'aboutMeModel': '#ffaa00'         // Sun Golden Yellow
     };
 
     let clickX = '50%';
@@ -102,12 +102,12 @@
         clickY = e.clientY + 'px';
     });
 
-    function openModal(modalId) {
-        const clickedPlanet = document.activeElement;
+    // Accept buttonElement as the second parameter
+    function openModal(modalId, buttonElement) {
         const sound = document.getElementById('swooshSound');
         const takeover = document.getElementById('screen-takeover');
 
-        if (clickedPlanet && clickedPlanet.classList.contains('planet')) {
+        if (buttonElement && buttonElement.classList.contains('planet')) {
             
             const takeoverColor = colorMap[modalId] || '#ffffff';
             takeover.style.backgroundColor = takeoverColor;
@@ -116,17 +116,16 @@
 
             if (sound) {
                 sound.currentTime = 0;
-                sound.play();
+                sound.play().catch(err => console.log("Audio play blocked until user interaction."));
             }
 
             takeover.classList.add('active');
 
             setTimeout(() => {
                 document.getElementById(modalId).classList.add('open');
-            
                 takeover.classList.remove('active');
                 takeover.style.backgroundColor = 'transparent';
-            }, 800); 
+            }, 1000); 
             
         } else {
             document.getElementById(modalId).classList.add('open');
