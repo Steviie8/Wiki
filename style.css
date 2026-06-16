@@ -10,14 +10,14 @@
 }
 body {
     background-image: url('Image/Background.png');
-    background-size: cover;
+    background-size: 105% 105%; 
     background-position: center;
     background-repeat: no-repeat;
     min-height: 100vh;
     margin: 0;
     position: relative; 
+    z-index: 1;
 }
-
 * {
     margin: 0;
     padding: 0; 
@@ -25,21 +25,39 @@ body {
     font-family: 'Black Ops One', sans-serif;
 }
 
+/* Base planetary styling modifications */
 .planet {
     position: absolute;
     background: none;
-    border: none; /* Removes default button outline boxes around images */
+    border: none;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    
+    transition: transform 0.1s ease-out; 
+    
+    transform: translate(
+        calc(var(--mouse-x, 0) * var(--depth, 1)), 
+        calc(var(--mouse-y, 0) * var(--depth, 1))
+    );
 }
 
-.planet:hover{
-    transform: scale(1.15);
+.top-left     { --depth: 3px; }   /* RC Car */
+.top-right    { --depth: -5px; }  /* Mechanical Arm (Moves inverted) */
+.bottom-left  { --depth: -10px; }   /* Screen: Super fast, exaggerated movement */
+.bottom-right { --depth: 3px; }  /* Game Jam: Negative number makes it move opposite to the screen! */
+.sun          { --depth: 0px; }    /* Sun: Heavy center anchor */
+
+.planet:hover {
+    transform: translate(
+        calc(var(--mouse-x, 0) * var(--depth, 1)), 
+        calc(var(--mouse-y, 0) * var(--depth, 1))
+    ) scale(1.15) !important;
 }
 
-.planet.active-click {
-    transform: scale(1.4) !important;
-    transition: transform 0.15s ease-out !important;
+.planet.explode {
+    transform: scale(3) !important;
+    opacity: 0 !important;
+    filter: blur(8px);
+    transition: transform 1s cubic-bezier(0.1, 0.8, 0.1, 1), opacity 0.8s ease-out !important;
 }
 
 .sun-button {

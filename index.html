@@ -101,8 +101,22 @@
         clickX = e.clientX + 'px';
         clickY = e.clientY + 'px';
     });
+    window.addEventListener('mousemove', (e) => {
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
 
-    // Accept buttonElement as the second parameter
+    const moveX = (e.clientX - centerX) / centerX;
+    const moveY = (e.clientY - centerY) / centerY;
+
+    const planets = document.querySelectorAll('.planet');
+    planets.forEach(planet => {
+        planet.style.setProperty('--mouse-x', moveX);
+        planet.style.setProperty('--mouse-y', moveY);
+    });
+
+    document.body.style.backgroundPosition = `${50 + (moveX * 2)}% ${50 + (moveY * 2)}%`;
+    });
+
     function openModal(modalId, buttonElement) {
         const sound = document.getElementById('swooshSound');
         const takeover = document.getElementById('screen-takeover');
