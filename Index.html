@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+    <audio id="swooshSound" src="Audio/swoosh2.mp3" preload="auto"></audio>
+    <div id="screen-takeover"></div>
     <button type="button" class="planet top-left" onclick="openModal('rccarModal')">
         <img src="Image/blue.png" alt="RC Car" style="width: 250px; height: 250px;">
     </button>
@@ -85,19 +86,62 @@
     </div>
 </div>
     <script>
-        function openModal(modalId) {
+    const colorMap = {
+        'rccarModal': '#1a5fb4',          
+        'MechanicalArmModal': '#6f32a8',  
+        'ScreenModal': '#865439',        
+        'VideoGamesModal': '#20b2aa',     
+        'aboutMeModel': '#CF652D'         
+    };
+
+    let clickX = '50%';
+    let clickY = '50%';
+
+    window.addEventListener('click', (e) => {
+        clickX = e.clientX + 'px';
+        clickY = e.clientY + 'px';
+    });
+
+    function openModal(modalId) {
+        const clickedPlanet = document.activeElement;
+        const sound = document.getElementById('swooshSound');
+        const takeover = document.getElementById('screen-takeover');
+
+        if (clickedPlanet && clickedPlanet.classList.contains('planet')) {
+            
+            const takeoverColor = colorMap[modalId] || '#ffffff';
+            takeover.style.backgroundColor = takeoverColor;
+            takeover.style.setProperty('--click-x', clickX);
+            takeover.style.setProperty('--click-y', clickY);
+
+            if (sound) {
+                sound.currentTime = 0;
+                sound.play();
+            }
+
+            takeover.classList.add('active');
+
+            setTimeout(() => {
+                document.getElementById(modalId).classList.add('open');
+            
+                takeover.classList.remove('active');
+                takeover.style.backgroundColor = 'transparent';
+            }, 800); 
+            
+        } else {
             document.getElementById(modalId).classList.add('open');
         }
+    }
 
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('open');
-        }
+    function closeModal(modalId) {
+        document.getElementById(modalId).classList.remove('open');
+    }
 
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal-overlay')) {
-                event.target.classList.remove('open');
-            }
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal-overlay')) {
+            event.target.classList.remove('open');
         }
-    </script>
+    }
+</script>
 </body>
 </html>

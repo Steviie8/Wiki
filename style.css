@@ -37,7 +37,44 @@ body {
     transform: scale(1.15);
 }
 
+.planet.active-click {
+    transform: scale(1.4) !important;
+    transition: transform 0.15s ease-out !important;
+}
 
+.sun-button {
+    clip-path: circle(40% at 50% 50%); 
+    transition: transform 0.2s ease !important;
+}
+
+.sun-button:hover img {
+}
+.sun-button:hover {
+    transform: scale(1.15) !important; 
+}
+
+#screen-takeover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: transparent;
+    pointer-events: none; 
+    z-index: 99999; 
+    clip-path: circle(0% at 50% 50%); 
+    transition: clip-path 1s cubic-bezier(0.1, 0.8, 0.3, 1);
+}
+
+/* When active, the circle clip expands violently to swallow the entire viewport */
+#screen-takeover.active {
+    clip-path: circle(150% at var(--click-x, 50%) var(--click-y, 50%));
+}
+
+.planet.explode img {
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+}
 .top-left img {
     width: 18vw;       
     min-width: 100px;  
