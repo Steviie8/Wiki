@@ -39,6 +39,11 @@ body {
         calc(var(--mouse-y, 0) * var(--depth, 1))
     );
 }
+.top-left img     { width: 250px; }
+.top-right img    { width: 350px; }
+.bottom-left img  { width: 350px; }
+.bottom-right img { width: 400px; }
+.sun img          { width: 650px; }
 
 .top-left     { --depth: 3px; }   /* RC Car */
 .top-right    { --depth: -5px; }  /* Mechanical Arm (Moves inverted) */
@@ -84,7 +89,6 @@ body {
     transition: clip-path 1s cubic-bezier(0.1, 0.8, 0.3, 1);
 }
 
-/* When active, the circle clip expands violently to swallow the entire viewport */
 #screen-takeover.active {
     clip-path: circle(150% at var(--click-x, 50%) var(--click-y, 50%));
 }
@@ -145,6 +149,46 @@ body {
 }
 .sun-button:hover {
     transform: none !important;
+}
+
+
+@media (max-width: 1024px) {
+    .top-left img     { width: 180px !important; }
+    .top-right img    { width: 240px !important; }
+    .bottom-left img  { width: 240px !important; }
+    .bottom-right img { width: 280px !important; }
+    .sun img          { width: 450px !important; }
+    
+    .top-left     { left: 24%; top: 18%; }
+    .bottom-right { right: 15%; bottom: 12%; }
+    .sun          { right: 28%; bottom: 18%; }
+}
+
+@media (max-width: 768px) {
+    .top-left img     { width: 110px !important; }
+    .top-right img    { width: 140px !important; }
+    .bottom-left img  { width: 140px !important; }
+    .bottom-right img { width: 160px !important; }
+    .sun img          { width: 260px !important; }
+    
+    .insta img, .link img, .tiktok img {
+        width: 60px !important;
+        height: 60px !important;
+    }
+    .link   { top: 10%; }
+    .tiktok { left: 18%; }
+
+    .top-left     { left: 15%; top: 20%; }
+    .top-right    { right: 5%; top: 8%; }
+    .bottom-left  { left: 5%; bottom: 20%; }
+    .bottom-right { right: 10%; bottom: 14%; }
+    .sun          { right: 20%; bottom: 25%; }
+
+    .top-left     { --depth: 8px; }
+    .top-right    { --depth: -4px; }
+    .bottom-left  { --depth: 10px; }
+    .bottom-right { --depth: -6px; }
+    .sun          { --depth: 2px; }
 }
 
 /* model */
