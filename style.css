@@ -45,11 +45,11 @@ body {
 .bottom-right img { width: 400px; }
 .sun img          { width: 650px; }
 
-.top-left     { --depth: 3px; }   /* RC Car */
-.top-right    { --depth: -5px; }  /* Mechanical Arm (Moves inverted) */
-.bottom-left  { --depth: -10px; }   /* Screen: Super fast, exaggerated movement */
-.bottom-right { --depth: 3px; }  /* Game Jam: Negative number makes it move opposite to the screen! */
-.sun          { --depth: 0px; }    /* Sun: Heavy center anchor */
+.top-left     { --depth: 3px; }   
+.top-right    { --depth: -5px; }  
+.bottom-left  { --depth: -10px; }   
+.bottom-right { --depth: 3px; }  
+.sun          { --depth: 0px; }   
 
 .planet:hover {
     transform: translate(
@@ -269,4 +269,28 @@ body {
 
 #aboutMeModel .modal-box {
     color: #a8def0; 
+}
+.resume-btn {
+    display: inline-block;
+    margin-top: 30px; 
+    background-color: #ffaa00; 
+    color: #122e3a; 
+    border: none;
+    border-radius: 30px; 
+    padding: 14px 32px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 170, 0, 0.3);
+    transition: all 0.2s ease-in-out;
+}
+
+.resume-btn:hover {
+    background-color: #ffc44d; 
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 20px rgba(255, 170, 0, 0.5);
+}
+
+.resume-btn:active {
+    transform: translateY(1px); 
 }
