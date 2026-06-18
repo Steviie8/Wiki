@@ -208,21 +208,29 @@ body {
                     pointer-events: all; 
                 } 
 
-.modal-box { background: var(--background-color); 
-            border: 2px solid var(--border-color); 
-            border-radius: 20px; 
-            padding: 40px 48px 48px; 
-            width: min(680px, 92vw); 
-            max-height: 82vh; 
-            overflow-y: auto; 
-            color: #e8f4f7; 
-            font-family: sans-serif; 
-            box-shadow: 0 20px 70px rgba(0,0,0,.55); 
-            transform: translateY(30px); 
-            transition: transform .28s ease; 
-            position: relative; 
-        }
+.modal-box { 
+    background: var(--background-color); 
+    border: 2px solid var(--border-color); 
+    border-radius: 20px; 
+    padding: 40px 48px 48px; 
+    width: min(680px, 92vw); 
+    max-height: 82vh; 
+    overflow-y: auto; 
+    color: #e8f4f7; 
+    font-family: sans-serif; 
+    box-shadow: 0 20px 70px rgba(0,0,0,.55); 
+    transform: translateY(30px); 
+    transition: transform .28s ease; 
+    position: relative; 
+    
+    
+    -ms-overflow-style: none;  
+    scrollbar-width: none;  
+}
 
+.modal-box::-webkit-scrollbar {
+    display: none;
+}
 
 
 
@@ -294,3 +302,10 @@ body {
 .resume-btn:active {
     transform: translateY(1px); 
 }
+
+.modal-img {
+       max-width: 60%; 
+       display: block;
+       margin: 20px auto 0; 
+       border-radius: 8px; 
+   }
