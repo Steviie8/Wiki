@@ -92,7 +92,6 @@ body {
     top: 50%;
     left: 50%;
     --depth: 0; 
-    /* Combines the mandatory centering translate with your script's parallax logic */
     transform: translate(
         calc(-50% + (var(--mouse-x, 0) * var(--depth) * 1px)), 
         calc(-50% + (var(--mouse-y, 0) * var(--depth) * 1px))
@@ -103,9 +102,8 @@ body {
     clip-path: circle(40% at 50% 50%); 
 }
 
-/* Keeps the sun centered perfectly while scaling up smoothly on hover */
-.sun:hover {
-    transform: translate(-50%, -50%) scale(1.15) !important;
+\.sun:hover {
+    transform: translate(-50%, -50%) scale(1.10) !important;
 }
 
 .sun-button:hover img {
@@ -113,7 +111,6 @@ body {
     transition: transform 0.2s ease;
 }
 
-/* Social media coordinates */
 .insta  { top: 2%; left: 3%; }
 .link   { top: 15%; left: 2%; }
 .tiktok { top: 1%; left: 12%; }
