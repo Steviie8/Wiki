@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Caveat:wght=400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap');
+
 
 :root{
     --background-shadow: rgba(255,255,255,.12);
@@ -179,12 +181,12 @@ body {
 .modal-overlay.open .modal-box { transform: translateY(0); }
 
 .modal-box h2 {
-    font-family: 'Caveat', cursive;
+    font-family: 'DM Serif Display';
     font-size: clamp(2rem, 6vw, 3rem); 
     margin-bottom: 24px;
 }
 .modal-box h3 {
-    font-family: 'Caveat', cursive;
+    font-family: 'DM Serif Display',;
     font-size: clamp(1.3rem, 4vw, 1.6rem);
     margin-top: 20px;
     margin-bottom: 8px;
