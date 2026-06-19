@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Steven.wiki</title>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght=700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <audio id="swooshSound" src="Audio/swoosh2.mp3" preload="auto"></audio>
     <div id="screen-takeover"></div>
+
     <button type="button" class="planet top-left" onclick="openModal('rccarModal', this)">
-    <img src="Image/blue.png" alt="RC Car">
+        <img src="Image/blue.png" alt="RC Car">
     </button>
 
     <button type="button" class="planet top-right" onclick="openModal('MechanicalArmModal', this)">
@@ -29,21 +30,17 @@
     <button type="button" class="planet sun sun-button" onclick="openModal('aboutMeModel', this)">
         <img src="Image/sun.png" alt="About Me">
     </button>
-    <a href="https://www.instagram.com/steviie_88/">
-    <button type="button" class="planet insta" style="border: none; background: none; padding: 0; cursor: pointer;"> 
-        <img src="Image/insta.png" alt="insta" style="width: 100px; height: 100px;"> 
-    </button>
+
+    <a href="https://www.instagram.com/steviie_88/" class="planet insta">
+        <img src="Image/insta.png" alt="insta"> 
     </a>
 
-    <a href="https://www.linkedin.com/in/steven-xu-812a9b301/">
-    <button type="button" class="planet link" style="border: none; background: none; padding: 0; cursor: pointer;"> 
-        <img src="Image/linkedin.png" alt="linkedin" style="width: 125px; height: 125px;"> 
-    </button>
+    <a href="https://www.linkedin.com/in/steven-xu-812a9b301/" class="planet link">
+        <img src="Image/linkedin.png" alt="linkedin"> 
     </a>
-    <a href="https://www.tiktok.com/@steviie_">
-    <button type="button" class="planet tiktok" style="border: none; background: none; padding: 0; cursor: pointer;"> 
-        <img src="Image/tiktok.png" alt="tiktok" style="width: 125px; height: 125px;"> 
-    </button>
+
+    <a href="https://www.tiktok.com/@steviie_" class="planet tiktok">
+        <img src="Image/tiktok.png" alt="tiktok"> 
     </a>
 
     <div class="modal-overlay" id="rccarModal">
@@ -51,10 +48,9 @@
             <button class="modal-close" onclick="closeModal('rccarModal')">✕</button>
             <h2>RC Car</h2>
             <h3>Overview</h3>
-            <p>I designed, built, and programmed a custom, network-controlled robotic vehicle platform with an ESP32 microcontroller after modifying hardware for a failed proprietary system. I developed a local web server and a full-duplex communication interface using WebSockets with ESPAsyncWebServer and AsyncTCP. This setup allowed for low-latency manual driving through a custom HTML, CSS, and JavaScript web dashboard that can handle multiple key inputs. On the hardware side, I integrated and synchronized several subsystems using I2C and GPIO protocols. This included dual H-bridge DC motor drivers, a precision steering servo, a SSD1306 OLED UI display, and NeoPixel LED indicators for real-time system status feedback. To protect and unify the platform, I designed and built a custom mechanical enclosure using CAD software. I successfully managed tight space constraints to fit internal component mounts, thermal ventilation channels, and precise cutouts for the telemetry screen and status LEDs.</p>
+            <p>I designed, built, and programmed a custom, network-controlled robotic vehicle platform with an ESP32 microcontroller after modifying hardware for a failed proprietary system...</p>
             <img src="Image/RCcar/IMG_3618.jpg" alt="RC car" class="modal-img">
-            <h3>Itterations</h3>
-
+            <h3>Iterations</h3>
         </div>
     </div>
 
@@ -79,28 +75,25 @@
         </div>
     </div>
 
-
     <div class="modal-overlay" id="aboutMeModel">
-    <div class="modal-box">
-        <button class="modal-close" onclick="closeModal('aboutMeModel')">✕</button>
-        <h2>About me</h2>
-        <h3>Hi, I'm Steven</h3>
-        <p>My name is Steven Xu, and I am a high school student about to graduate. I have spent the past few years playing music at elderly homes, which has allowed me to become the president of a group of students at WeCareActPearland. Through my leadership, we have raised money for alzheimers and improved our community through music. To lead more into my interests, I have spent the past year in robotics (team Pearadox 5414), allowing me to better understand the real-world skills in engineering: iterating, design, documentation, and CAD skills. Along with working in robotics, I have started to work on my own projects with microcontrollers; I have created screens that use API’s to display data on a 32x64-bit screen and RC cars that I used CAD to make an enclosure. Along with all this hardware knowledge I have gained, I have also worked in a lot of software, learning Python, Java, C++, and GDScript.
-        </p>
-        <P>More about my hobbies, I very much enjoy working with microcontrollers, allowing me to create thousands of trinkets and technology. I also enjoy making games as it allows me to use my mind to create and communicate with others to be able to release fun and engaging products that I am proud of. Finally, the last thing that I very much enjoy is photography, allowing me to snap memories and create masterpieces that I can use to express myself.</P>
-        <a href="Image/Steven_Xu_Resume.pdf" download="Steven_Xu_Resume.pdf" style="text-decoration: none; display: block; text-align: center;">
-        <button type="button" class="resume-btn">Download Resume</button>
-    </a>
-
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('aboutMeModel')">✕</button>
+            <h2>About me</h2>
+            <h3>Hi, I'm Steven</h3>
+            <p>My name is Steven Xu, and I am a high school student about to graduate...</p>
+            <a href="Image/Steven_Xu_Resume.pdf" download="Steven_Xu_Resume.pdf" style="text-decoration: none; display: block; text-align: center;">
+                <button type="button" class="resume-btn">Download Resume</button>
+            </a>
+        </div>
     </div>
-</div>
-    <script>
+
+<script>
     const colorMap = {
-        'rccarModal': '#1a5fb4',          // Blue
-        'MechanicalArmModal': '#6f32a8',  // Purple
-        'ScreenModal': '#865439',         // Brown
-        'VideoGamesModal': '#20b2aa',     // Turquoise
-        'aboutMeModel': '#ffaa00'         // Sun Golden Yellow
+        'rccarModal': '#1a5fb4',
+        'MechanicalArmModal': '#6f32a8',
+        'ScreenModal': '#865439',
+        'VideoGamesModal': '#20b2aa',
+        'aboutMeModel': '#ffaa00'
     };
 
     let clickX = '50%';
@@ -110,20 +103,21 @@
         clickX = e.clientX + 'px';
         clickY = e.clientY + 'px';
     });
+
     window.addEventListener('mousemove', (e) => {
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
 
-    const moveX = (e.clientX - centerX) / centerX;
-    const moveY = (e.clientY - centerY) / centerY;
+        const moveX = (e.clientX - centerX) / centerX;
+        const moveY = (e.clientY - centerY) / centerY;
 
-    const planets = document.querySelectorAll('.planet');
-    planets.forEach(planet => {
-        planet.style.setProperty('--mouse-x', moveX);
-        planet.style.setProperty('--mouse-y', moveY);
-    });
+        const planets = document.querySelectorAll('.planet');
+        planets.forEach(planet => {
+            planet.style.setProperty('--mouse-x', moveX);
+            planet.style.setProperty('--mouse-y', moveY);
+        });
 
-    document.body.style.backgroundPosition = `${50 + (moveX * 2)}% ${50 + (moveY * 2)}%`;
+        document.body.style.backgroundPosition = `${50 + (moveX * 2)}% ${50 + (moveY * 2)}%`;
     });
 
     function openModal(modalId, buttonElement) {
@@ -131,7 +125,6 @@
         const takeover = document.getElementById('screen-takeover');
 
         if (buttonElement && buttonElement.classList.contains('planet')) {
-            
             const takeoverColor = colorMap[modalId] || '#ffffff';
             takeover.style.backgroundColor = takeoverColor;
             takeover.style.setProperty('--click-x', clickX);
@@ -139,7 +132,7 @@
 
             if (sound) {
                 sound.currentTime = 0;
-                sound.play().catch(err => console.log("Audio play blocked until user interaction."));
+                sound.play().catch(err => console.log("Audio play blocked."));
             }
 
             takeover.classList.add('active');
@@ -149,7 +142,6 @@
                 takeover.classList.remove('active');
                 takeover.style.backgroundColor = 'transparent';
             }, 1000); 
-            
         } else {
             document.getElementById(modalId).classList.add('open');
         }

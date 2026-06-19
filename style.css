@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Caveat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Caveat:wght=400;700&display=swap');
 
 :root{
     --background-shadow: rgba(255,255,255,.12);
@@ -8,8 +8,9 @@
     --font-color1 : #9974ff;
     --font-shadow: rgba(240, 105, 228, 0.5);
 }
+
 body {
-    background-image: url('Image/Background.png');
+    background-image: url('Image/steve8.png');
     background-size: 105% 105%; 
     background-position: center;
     background-repeat: no-repeat;
@@ -17,7 +18,9 @@ body {
     margin: 0;
     position: relative; 
     z-index: 1;
+    overflow: hidden; /* Prevents unwanted scrollbars during parallax or scaling */
 }
+
 * {
     margin: 0;
     padding: 0; 
@@ -31,30 +34,41 @@ body {
     background: none;
     border: none;
     cursor: pointer;
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: transform 0.1s ease-out; 
     
     transform: translate(
-        calc(var(--mouse-x, 0) * var(--depth, 1)), 
-        calc(var(--mouse-y, 0) * var(--depth, 1))
+        calc(var(--mouse-x, 0) * var(--depth, 1px)), 
+        calc(var(--mouse-y, 0) * var(--depth, 1px))
     );
 }
-.top-left img     { width: 250px; }
-.top-right img    { width: 350px; }
-.bottom-left img  { width: 350px; }
-.bottom-right img { width: 400px; }
-.sun img          { width: 650px; }
 
-.top-left     { --depth: 3px; }   
-.top-right    { --depth: -5px; }  
-.bottom-left  { --depth: -10px; }   
-.bottom-right { --depth: 3px; }  
-.sun          { --depth: 0px; }   
+/* Fluid Sizing via Viewport Width (vw) with safe clamps */
+.top-left img     { width: clamp(100px, 16vw, 250px); }
+.top-right img    { width: clamp(140px, 22vw, 350px); }
+.bottom-left img  { width: clamp(140px, 22vw, 350px); }
+.bottom-right img { width: clamp(160px, 25vw, 400px); }
+.sun img          { width: clamp(260px, 42vw, 650px); }
+
+/* Social Icons Fluid Sizing */
+.insta img, .link img, .tiktok img {
+    width: clamp(60px, 8vw, 125px);
+    height: clamp(60px, 8vw, 125px);
+}
+
+/* Depth Configuration (Parallax Strength) */
+.top-left     { --depth: 3; }   
+.top-right    { --depth: -5; }  
+.bottom-left  { --depth: -10; }   
+.bottom-right { --depth: 3; }  
+.sun          { --depth: 0; }   
 
 .planet:hover {
     transform: translate(
-        calc(var(--mouse-x, 0) * var(--depth, 1)), 
-        calc(var(--mouse-y, 0) * var(--depth, 1))
+        calc(var(--mouse-x, 0) * var(--depth) * 1px), 
+        calc(var(--mouse-y, 0) * var(--depth) * 1px)
     ) scale(1.15) !important;
 }
 
@@ -65,17 +79,44 @@ body {
     transition: transform 1s cubic-bezier(0.1, 0.8, 0.1, 1), opacity 0.8s ease-out !important;
 }
 
+/* Positions */
+.top-left     { top: 16%; left: 32%; }
+.top-right    { top: 4%;  right: 4%; }
+.bottom-left  { bottom: 14%; left: 10%; }
+.bottom-right { bottom: 8%;  right: 20%; }
+
+/* Centered Sun Core Styling */
+.sun {
+    top: 50%;
+    left: 50%;
+    --depth: 0; 
+    /* Combines the mandatory centering translate with your script's parallax logic */
+    transform: translate(
+        calc(-50% + (var(--mouse-x, 0) * var(--depth) * 1px)), 
+        calc(-50% + (var(--mouse-y, 0) * var(--depth) * 1px))
+    ) !important;
+}
+
 .sun-button {
     clip-path: circle(40% at 50% 50%); 
-    transition: transform 0.2s ease !important;
+}
+
+/* Keeps the sun centered perfectly while scaling up smoothly on hover */
+.sun:hover {
+    transform: translate(-50%, -50%) scale(1.15) !important;
 }
 
 .sun-button:hover img {
-}
-.sun-button:hover {
-    transform: scale(1.15) !important; 
+    transform: scale(1.15);
+    transition: transform 0.2s ease;
 }
 
+/* Social media coordinates */
+.insta  { top: 2%; left: 3%; }
+.link   { top: 15%; left: 2%; }
+.tiktok { top: 1%; left: 12%; }
+
+/* Screen Takeover */
 #screen-takeover {
     position: fixed;
     top: 0;
@@ -88,7 +129,6 @@ body {
     clip-path: circle(0% at 50% 50%); 
     transition: clip-path 1s cubic-bezier(0.1, 0.8, 0.3, 1);
 }
-
 #screen-takeover.active {
     clip-path: circle(150% at var(--click-x, 50%) var(--click-y, 50%));
 }
@@ -97,122 +137,31 @@ body {
     opacity: 0;
     transition: opacity 0.2s ease-out;
 }
-.top-left img {
-    width: 18vw;       
-    min-width: 100px;  
-    max-width: 250px;  
-}
 
-.top-left {
-    top: 16%;
-    left: 32%;
-}
-.top-right {
-    top: 0%;
-    right: 2%;
-}
-.bottom-left {
-    bottom: 14%;
-    left: 10%;
-}
-.bottom-right {
-    bottom: 8%;
-    right: 20%;
-}
-.sun{
-    bottom:16%;
-    right: 33%;
-}
-.insta{
-    top: 2%;
-    left: 3%;
-}
-
-.link{
-    top: 15%;
-    left: 2%;
-
-}
-.tiktok{
-    top: 0.5%;
-    left: 9.5%;
-
-}
-.sun-button {
-    clip-path: circle(40% at 50% 50%); 
-    transition: none !important;
-}
-
-.sun-button:hover img {
-    transform: scale(1.15);
-    transition: transform 0.2s ease;
-}
-.sun-button:hover {
-    transform: none !important;
-}
-
-
-@media (max-width: 1024px) {
-    .top-left img     { width: 180px !important; }
-    .top-right img    { width: 240px !important; }
-    .bottom-left img  { width: 240px !important; }
-    .bottom-right img { width: 280px !important; }
-    .sun img          { width: 450px !important; }
-    
-    .top-left     { left: 24%; top: 18%; }
-    .bottom-right { right: 15%; bottom: 12%; }
-    .sun          { right: 28%; bottom: 18%; }
-}
-
-@media (max-width: 768px) {
-    .top-left img     { width: 110px !important; }
-    .top-right img    { width: 140px !important; }
-    .bottom-left img  { width: 140px !important; }
-    .bottom-right img { width: 160px !important; }
-    .sun img          { width: 260px !important; }
-    
-    .insta img, .link img, .tiktok img {
-        width: 60px !important;
-        height: 60px !important;
-    }
-    .link   { top: 10%; }
-    .tiktok { left: 18%; }
-
-    .top-left     { left: 15%; top: 20%; }
-    .top-right    { right: 5%; top: 8%; }
-    .bottom-left  { left: 5%; bottom: 20%; }
-    .bottom-right { right: 10%; bottom: 14%; }
-    .sun          { right: 20%; bottom: 25%; }
-
-    .top-left     { --depth: 8px; }
-    .top-right    { --depth: -4px; }
-    .bottom-left  { --depth: 10px; }
-    .bottom-right { --depth: -6px; }
-    .sun          { --depth: 2px; }
-}
-
-/* model */
-.modal-overlay { position: fixed; 
-                inset: 0;
-                 z-index: 200;
-                background: var(--background-shadow);
-                backdrop-filter: blur(8px);
-                display: flex;
-                align-items:center;
-                justify-content: center;
-                opacity: 0;
-                pointer-events: none; 
-                transition: opacity .28s ease; 
-            } 
-.modal-overlay.open { opacity: 1; 
-                    pointer-events: all; 
-                } 
+/* Modals styling */
+.modal-overlay { 
+    position: fixed; 
+    inset: 0;
+    z-index: 200;
+    background: var(--background-shadow);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none; 
+    transition: opacity .28s ease; 
+} 
+.modal-overlay.open { 
+    opacity: 1; 
+    pointer-events: all; 
+} 
 
 .modal-box { 
     background: var(--background-color); 
     border: 2px solid var(--border-color); 
     border-radius: 20px; 
-    padding: 40px 48px 48px; 
+    padding: min(8vw, 45px); 
     width: min(680px, 92vw); 
     max-height: 82vh; 
     overflow-y: auto; 
@@ -222,33 +171,24 @@ body {
     transform: translateY(30px); 
     transition: transform .28s ease; 
     position: relative; 
-    
-    
-    -ms-overflow-style: none;  
     scrollbar-width: none;  
 }
-
 .modal-box::-webkit-scrollbar {
     display: none;
 }
-
-
-
 .modal-overlay.open .modal-box { transform: translateY(0); }
 
 .modal-box h2 {
     font-family: 'Caveat', cursive;
-    font-size: 3rem;
+    font-size: clamp(2rem, 6vw, 3rem); 
     margin-bottom: 24px;
 }
-
 .modal-box h3 {
     font-family: 'Caveat', cursive;
-    font-size: 1.6rem;
+    font-size: clamp(1.3rem, 4vw, 1.6rem);
     margin-top: 20px;
     margin-bottom: 8px;
 }
-
 .modal-box p {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1rem;
@@ -256,28 +196,26 @@ body {
     margin-bottom: 16px;
     color: #c8e8ef;
 }
-
 .modal-box p:not(:last-child) {
     margin-bottom: 18px;
 }
-
 .modal-close {
-  position: absolute; top: 16px; right: 20px;
-  background: none; border: none; color: rgba(255,255,255,.45);
-  font-size: 1.6rem; cursor: pointer; line-height: 1;
-  transition: color .18s;
+    position: absolute; top: 16px; right: 20px;
+    background: none; border: none; color: rgba(255,255,255,.45);
+    font-size: 1.6rem; cursor: pointer; line-height: 1;
+    transition: color .18s;
 }
-
 .modal-close:hover { color: #fff; }
 
 #aboutMeModel .modal-box h2 {
     color: #0fbad8fa; 
     text-shadow: 0 0 14px rgba(0, 210, 255, 0.5); 
 }
-
 #aboutMeModel .modal-box {
     color: #a8def0; 
 }
+
+/* Fixed Resume Button Syntax */
 .resume-btn {
     display: inline-block;
     margin-top: 30px; 
@@ -292,20 +230,17 @@ body {
     box-shadow: 0 4px 15px rgba(255, 170, 0, 0.3);
     transition: all 0.2s ease-in-out;
 }
-
 .resume-btn:hover {
     background-color: #ffc44d; 
     transform: translateY(-2px); 
     box-shadow: 0 6px 20px rgba(255, 170, 0, 0.5);
 }
-
 .resume-btn:active {
     transform: translateY(1px); 
 }
-
 .modal-img {
-       max-width: 60%; 
-       display: block;
-       margin: 20px auto 0; 
-       border-radius: 8px; 
-   }
+    max-width: 80%; 
+    display: block;
+    margin: 20px auto 0; 
+    border-radius: 8px; 
+}
