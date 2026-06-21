@@ -12,7 +12,7 @@
 }
 
 body {
-    background-image: url('Image/steve8.png');
+    background-image: url('Image/Background/steve8.png');
     background-size: 105% 105%; 
     background-position: center;
     background-repeat: no-repeat;
@@ -102,7 +102,7 @@ body {
     clip-path: circle(40% at 50% 50%); 
 }
 
-\.sun:hover {
+.planet.sun:hover {
     transform: translate(-50%, -50%) scale(1.10) !important;
 }
 
