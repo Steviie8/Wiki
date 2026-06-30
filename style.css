@@ -48,11 +48,12 @@ body {
 }
 
 /* Fluid Sizing via Viewport Width (vw) with safe clamps */
-.top-left img     { width: clamp(100px, 16vw, 250px); }
-.top-right img    { width: clamp(140px, 22vw, 350px); }
-.bottom-left img  { width: clamp(140px, 22vw, 350px); }
-.bottom-right img { width: clamp(160px, 25vw, 400px); }
-.sun img          { width: clamp(260px, 42vw, 650px); }
+.top-left img     { width: 140px, 26vw, 280px; }
+.top-right img    { width: 170px, 32vw, 380px; }
+.bottom-left img  { width: 170px, 32vw, 380px; }
+.bottom-right img { width: 190px, 36vw, 420px; }
+.sun img          { width: 100px, 65vmin, 650px; }
+  
 
 /* Social Icons Fluid Sizing */
 .insta img, .link img, .tiktok img {
@@ -82,9 +83,9 @@ body {
 }
 
 /* Positions */
-.top-left     { top: 16%; left: 32%; }
-.top-right    { top: 4%;  right: 4%; }
-.bottom-left  { bottom: 14%; left: 10%; }
+.top-left     { top: 13%; left: 30%; }
+.top-right    { top: 1%;  right: 0%; }
+.bottom-left  { bottom: 14%; left: 8%; }
 .bottom-right { bottom: 8%;  right: 20%; }
 
 /* Centered Sun Core Styling */

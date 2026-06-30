@@ -159,6 +159,32 @@
             event.target.classList.remove('open');
         }
     }
+   function expSize(dim, minDim, maxDim, minSize, maxSize, exponent) {
+    let t = (dim - minDim) / (maxDim - minDim);
+    t = Math.max(0, Math.min(1, t));
+    let p = 1 - t;
+    return maxSize - (maxSize - minSize) * Math.pow(p, exponent);
+}
+
+    function updatePlanetSizes() {
+        const vw = window.innerWidth;
+        const vmin = Math.min(window.innerWidth, window.innerHeight);
+        const exponent = 1;
+
+        document.querySelector('.top-left img').style.width =
+            expSize(vw, 320, 1880, 130, 290, exponent) + 'px';
+        document.querySelector('.top-right img').style.width =
+            expSize(vw, 320, 1880, 140, 400, exponent) + 'px';
+        document.querySelector('.bottom-left img').style.width =
+            expSize(vw, 320, 1880, 140, 400, exponent) + 'px';
+        document.querySelector('.bottom-right img').style.width =
+            expSize(vw, 320, 1880, 160, 390, exponent) + 'px';
+        document.querySelector('.sun img').style.width =
+            expSize(vmin, 320, 1040, 100, 700, exponent) + 'px';
+}
+
+window.addEventListener('resize', updatePlanetSizes);
+updatePlanetSizes();
 </script>
 </body>
 </html>
