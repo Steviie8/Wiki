@@ -4,111 +4,211 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Steven.wiki</title>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght=700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+<base target="_blank">
 </head>
 <body>
+
+    <!-- Ambient Audio -->
     <audio id="swooshSound" src="Audio/swoosh2.mp3" preload="auto"></audio>
+
+    <!-- Noise Texture Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Star Field -->
+    <div class="stars"></div>
+
+    <!-- Floating Particles Container -->
+    <div id="particles"></div>
+
+    <!-- Screen Takeover for Modal Transitions -->
     <div id="screen-takeover"></div>
 
-    <button type="button" class="planet top-left" onclick="openModal('rccarModal', this)">
-        <img src="Image/Background/blue.png" alt="RC Car">
-    </button>
+    <!-- ===== ORBIT SYSTEM ===== -->
+    <div class="orbit-system">
+        <div class="about-me-ring"></div>
+        <div class="orbit-ring r1"></div>
+        <div class="orbit-ring r2"></div>
+        <div class="orbit-ring r3"></div>
 
-    <button type="button" class="planet top-right" onclick="openModal('MechanicalArmModal', this)">
-        <img src="Image/Background/pruple.png" alt="Mechanical Arm">
-    </button>
+        <!-- Sun / About Me -->
+        <div class="sun-wrapper" onclick="openModal('aboutMeModal', this)">
+            <div class="sun-glow"></div>
+            <div class="sun-art">
+                <img src="Image/Background/sun.png" alt="About Me" class="sun-img">
+            </div>
+            <span class="sun-label">About Me</span>
+        </div>
 
-    <button type="button" class="planet bottom-left" onclick="openModal('ScreenModal', this)">
-        <img src="Image/Background/brown.png" alt="Screen">
-    </button>
+        <!-- Planet: RC Car -->
+        <div class="planet-wrapper p-top-left" onclick="openModal('rccarModal', this)">
+            <div class="planet-art">
+                <img src="Image/Background/blue.png" alt="RC Car">
+            </div>
+            <span class="planet-label">RC Car</span>
+        </div>
 
-    <button type="button" class="planet bottom-right" onclick="openModal('VideoGamesModal', this)">
-        <img src="Image/Background/turquoise.png" alt="Game Jam">
-    </button>
+        <!-- Planet: Mechanical Arm -->
+        <div class="planet-wrapper p-top-right" onclick="openModal('MechanicalArmModal', this)">
+            <div class="planet-art">
+                <img src="Image/Background/pruple.png" alt="Mechanical Arm">
+            </div>
+            <span class="planet-label">Mech Arm</span>
+        </div>
 
-    <button type="button" class="planet sun sun-button" onclick="openModal('aboutMeModel', this)">
-        <img src="Image/Background/sun.png" alt="About Me">
-    </button>
+        <!-- Planet: Screen -->
+        <div class="planet-wrapper p-bottom-left" onclick="openModal('ScreenModal', this)">
+            <div class="planet-art">
+                <img src="Image/Background/brown.png" alt="Screen">
+            </div>
+            <span class="planet-label">Screen</span>
+        </div>
 
-    <a href="https://www.instagram.com/steviie_88/" class="planet insta">
-        <img src="Image/Background/insta.png" alt="insta"> 
-    </a>
+        <!-- Planet: Webcam Tracker -->
+        <div class="planet-wrapper p-bottom-right" onclick="openModal('VideoGamesModal', this)">
+            <div class="planet-art">
+                <img src="Image/Background/turquoise.png" alt="Game Jam">
+            </div>
+            <span class="planet-label">Tracker</span>
+        </div>
+    </div>
 
-    <a href="https://www.linkedin.com/in/steven-xu-812a9b301/" class="planet link">
-        <img src="Image/Background/linkedin.png" alt="linkedin"> 
-    </a>
+    <!-- ===== SOCIAL CONSTELLATION (ALL LOGOS TOGETHER) ===== -->
+    <div class="constellation constellation-left">
+        <a href="https://www.instagram.com/steviie_88/" class="star-node instagram" title="Instagram" target="_blank">
+            <img src="Image/Background/insta.png" alt="Instagram">
+        </a>
+        <a href="https://www.linkedin.com/in/steven-xu-812a9b301/" class="star-node linkedin" title="LinkedIn" target="_blank">
+            <img src="Image/Background/linkedin.png" alt="LinkedIn">
+        </a>
+        <a href="https://www.tiktok.com/@steviie_" class="star-node tiktok" title="TikTok" target="_blank">
+            <img src="Image/Background/tiktok.png" alt="TikTok">
+        </a>
+    </div>
 
-    <a href="https://www.tiktok.com/@steviie_" class="planet tiktok">
-        <img src="Image/Background/tiktok.png" alt="tiktok"> 
-    </a>
+    <!-- Site Title -->
+    <div class="site-title">Steven.wiki</div>
 
+    <!-- ===== MODALS ===== -->
+
+    <!-- RC Car Modal -->
     <div class="modal-overlay" id="rccarModal">
-        <div class="modal-box">
+        <div class="modal-parchment">
+            <div class="corner-deco tl"></div>
+            <div class="corner-deco tr"></div>
+            <div class="corner-deco bl"></div>
+            <div class="corner-deco br"></div>
             <button class="modal-close" onclick="closeModal('rccarModal')">✕</button>
-            <h2>RC Car</h2>
+            <div class="modal-content"><h2>RC Car</h2>
+            <div class="divider"></div>
             <h3>Overview</h3>
             <p>I designed, built, and programmed a custom, network-controlled robotic vehicle platform with an ESP32 microcontroller after modifying hardware for a failed proprietary system. I developed a local web server and a full-duplex communication interface using WebSockets with ESPAsyncWebServer and AsyncTCP. This setup allowed for low-latency manual driving through a custom HTML, CSS, and JavaScript web dashboard that can handle multiple key inputs. On the hardware side, I integrated and synchronized several subsystems using I2C and GPIO protocols. This included dual H-bridge DC motor drivers, a precision steering servo, a SSD1306 OLED UI display, and NeoPixel LED indicators for real-time system status feedback. To protect and unify the platform, I designed and built a custom mechanical enclosure using CAD software. I successfully managed tight space constraints to fit internal component mounts, thermal ventilation channels, and precise cutouts for the telemetry screen and status LEDs.</p>
             <img src="Image/RCcar/IMG_3618.jpg" alt="RC car" class="modal-img">
-            <h3>Iterations</h3>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="VideoGamesModal">
-        <div class="modal-box">
-            <button class="modal-close" onclick="closeModal('VideoGamesModal')">✕</button>
-            <h2>Webcam Tracker</h2>
-            <p></p>
-            <video controls muted class="modal-video">
-                <source src="Image/Webcam Tracker/TrackingExample.mp4" type="video/mp4">
-            </video>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="MechanicalArmModal">
-        <div class="modal-box">
-            <button class="modal-close" onclick="closeModal('MechanicalArmModal')">✕</button>
-            <h2>Mechanical Arm</h2>
             
+            <h3>Iterations</h3>
+            <div class="iterations-timeline">
+                <div class="iteration-step">
+                    <span class="step-date">Iteration 1</span>
+                    <h4>Core Hardware Refit & Base Drive</h4>
+                    <p>Replaced the broken factory receiver board with an ESP32 and dual H-bridge drivers. Configured basic motor pinouts and calibrated the steering servo center line for simple linear driving.</p>
+                     <video controls muted class="modal-video">
+                    <source src="Image/RCcar/RCcar.mov" type="video/mp4">
+                    </video>
+                </div>
+                <div class="iteration-step">
+                    <span class="step-date">Iteration 2</span>
+                    <h4>Web Dashboard & Teleoperation</h4>
+                    <p>Built a local web server utilizing WebSockets for low-latency, full-duplex keyboard controls, transforming the car into a web-driven platform.</p>
+                </div>
+                <div class="iteration-step">
+                    <span class="step-date">Iteration 3</span>
+                    <h4>Custom Enclosure & Live Telemetry</h4>
+                    <p>Modeled and 3D-printed a custom chassis enclosure featuring precise thermal ventilation and integrated an onboard display for real-time status telemetry.</p></div>
+                </div>
+            </div>
         </div>
     </div>
 
+    <!-- Mechanical Arm Modal -->
+    <div class="modal-overlay" id="MechanicalArmModal">
+        <div class="modal-parchment">
+            <div class="corner-deco tl"></div>
+            <div class="corner-deco tr"></div>
+            <div class="corner-deco bl"></div>
+            <div class="corner-deco br"></div>
+            <button class="modal-close" onclick="closeModal('MechanicalArmModal')">✕</button>
+            <div class="modal-content"><h2>Mechanical Arm</h2>
+            <div class="divider"></div>
+            <p>A 5-DOF robotic arm built through extensive prototyping and optimization. Learning about joints and tracking from my webcam project, I applied that knowledge to create a precise articulated arm capable of complex movements.</p></div>
+        </div>
+    </div>
+
+    <!-- Screen Modal -->
     <div class="modal-overlay" id="ScreenModal">
-        <div class="modal-box">
+        <div class="modal-parchment">
+            <div class="corner-deco tl"></div>
+            <div class="corner-deco tr"></div>
+            <div class="corner-deco bl"></div>
+            <div class="corner-deco br"></div>
             <button class="modal-close" onclick="closeModal('ScreenModal')">✕</button>
-            <h2>Screen</h2>
+            <div class="modal-content"><h2>Screen</h2>
+            <div class="divider"></div>
             <p>During this engineering project, I designed and built an internet-connected display system using an ESP32-M4 Matrix Portal than upgraded to ESP32-S3 Matrix Portal to fetch and showcase real-time game data. Programming in CircuitPython, I configured the microcontroller to set up Wi-Fi connections, pull live data through web APIs, and manage communication protocols between multiple ESP32 boards to transmit information smoothly across the system.</p>
             <p>When hardware limitations affected performance, I created custom memory cleanup routines to improve the codebase. This ensured the data refreshed smoothly without crashing the system's limited RAM. I also faced a major setback when the wrong hardware components arrived. Instead of waiting for replacements, I reverse-engineered the pinouts and adjusted my wiring to make the existing parts work together.</p>
             <p>To complete the project, I treated it like an open-source product. I built a dedicated website with information on the parts that I got and a whole tab that gave everyone the code that I created, allowing others to be able to create the same project that I created. I also demoed my project to a group of people to get people more interested in creating a product like mine.</p>
-            <img src="Image/Screen/Screen.jpg" alt="Screen" class="modal-img">
+            <img src="Image/Screen/Screen.jpg" alt="Screen" class="modal-img"></div>
         </div>
     </div>
 
-    <div class="modal-overlay" id="aboutMeModel">
-        <div class="modal-box">
-            <button class="modal-close" onclick="closeModal('aboutMeModel')">✕</button>
-            <h2>About me</h2>
+    <!-- Webcam Tracker Modal -->
+    <div class="modal-overlay" id="VideoGamesModal">
+        <div class="modal-parchment">
+            <div class="corner-deco tl"></div>
+            <div class="corner-deco tr"></div>
+            <div class="corner-deco bl"></div>
+            <div class="corner-deco br"></div>
+            <button class="modal-close" onclick="closeModal('VideoGamesModal')">✕</button>
+            <div class="modal-content"><h2>Webcam Tracker</h2>
+            <div class="divider"></div>
+            <video controls muted class="modal-video">
+                <source src="Image/Webcam Tracker/TrackingExample.mp4" type="video/mp4">
+            </video></div>
+        </div>
+    </div>
+
+    <!-- About Me Modal -->
+    <div class="modal-overlay" id="aboutMeModal">
+        <div class="modal-parchment">
+            <div class="corner-deco tl"></div>
+            <div class="corner-deco tr"></div>
+            <div class="corner-deco bl"></div>
+            <div class="corner-deco br"></div>
+            <button class="modal-close" onclick="closeModal('aboutMeModal')">✕</button>
+            <div class="modal-content"><h2>About me</h2>
+            <div class="divider"></div>
             <h3>Hi, I'm Steven</h3>
             <img src="Image/Steven/steven.jpg" alt="Steven Xu" class="about-me-img">
-            <p>My name is Steven Xu, and I am a high school student with a deep passion for hardware engineering, software development, and robotics. Over the years, my fascination with microcontrollers has driven me to design and build numerous custom devices, bridging the gap between hardware and software. This love for hands-on creation led me to join FRC Robotics Team Pearadox 5414, where I honed essential industry skills including CAD, iterative design, thorough documentation, and practical engineering principles. 
- also enjoy making games, as it allows me to use my mind to create and communicate with others to be able to release fun and engaging games.</p>
-            <P>My technical portfolio spans both physical and digital realms. On the hardware side, I have engineered a 32x64 LED matrix display that fetches and renders real-time API data, designed and CAD-modeled custom enclosures for RC vehicles, and built a webcam that tracks your face with  2 DOF through AI. Learning about joints and tracking, I then built a 5-DOF robotic arm—a project that required extensive prototyping and optimization to build and operate at a high level. These projects were all created using a 3d printer, which is something that I have spent countless hours fixing and upgrading so that I can get the fastest and best prints. Complementing my hardware experience is a strong software foundation in Python, Java, C++, and GDScript, which I also leverage to build engaging games that connect people in game jams and hackathons. Along with these games, I use coding to optimize measuring volunteering hours in my volunteer organization using web dev and cloud automation.</P>
-            <p>Outside of my technical pursuits, I am dedicated to community service and leadership. In my role as President of the We Care Act Pearland branch, I coordinate student-driven musical showcases for residents at local senior centers. Drawing on over a decade of guitar experience and five years in the school band, I leverage my musical background to drive charitable initiatives, raise vital support for Alzheimer’s research, and foster meaningful connections through performance. Along with music, I enjoy going into the outdoors and fishing with friends and family, allowing me to better connect with people and make new memories.</p>
+            <p>My name is Steven Xu, and I am a high school student with a deep passion for hardware engineering, software development, and robotics. Over the years, my fascination with microcontrollers has driven me to design and build numerous custom devices, bridging the gap between hardware and software. This love for hands-on creation led me to join FRC Robotics Team Pearadox 5414, where I honed essential industry skills including CAD, iterative design, thorough documentation, and practical engineering principles. I also enjoy making games, as it allows me to use my mind to create and communicate with others to be able to release fun and engaging games.</p>
+            <p>My technical portfolio spans both physical and digital realms. On the hardware side, I have engineered a 32x64 LED matrix display that fetches and renders real-time API data, designed and CAD-modeled custom enclosures for RC vehicles, and built a webcam that tracks your face with 2 DOF through AI. Learning about joints and tracking, I then built a 5-DOF robotic arm—a project that required extensive prototyping and optimization to build and operate at a high level. These projects were all created using a 3d printer, which is something that I have spent countless hours fixing and upgrading so that I can get the fastest and best prints. Complementing my hardware experience is a strong software foundation in Python, Java, C++, and GDScript, which I also leverage to build engaging games that connect people in game jams and hackathons. Along with these games, I use coding to optimize measuring volunteering hours in my volunteer organization using web dev and cloud automation.</p>
+            <p>Outside of my technical pursuits, I am dedicated to community service and leadership. In my role as President of the We Care Act Pearland branch, I coordinate student-driven musical showcases for residents at local senior centers. Drawing on over a decade of guitar experience and five years in the school band, I leverage my musical background to drive charitable initiatives, raise vital support for Alzheimer's research, and foster meaningful connections through performance. Along with music, I enjoy going into the outdoors and fishing with friends and family, allowing me to better connect with people and make new memories.</p>
             <a href="Image/Steven_Xu_Resume.pdf" download="Steven_Xu_Resume.pdf" style="text-decoration: none; display: block; text-align: center;">
                 <button type="button" class="resume-btn">Download Resume</button>
-            </a>
+            </a></div>
         </div>
     </div>
 
 <script>
+    // ===== COLOR MAP FOR TAKEOVER =====
     const colorMap = {
         'rccarModal': '#1a5fb4',
         'MechanicalArmModal': '#6f32a8',
         'ScreenModal': '#865439',
         'VideoGamesModal': '#20b2aa',
-        'aboutMeModel': '#ffaa00'
+        'aboutMeModal': '#d4a853'
     };
 
+    // ===== MOUSE TRACKING =====
     let clickX = '50%';
     let clickY = '50%';
 
@@ -117,28 +217,39 @@
         clickY = e.clientY + 'px';
     });
 
+    // ===== PARALLAX =====
     window.addEventListener('mousemove', (e) => {
         const centerX = window.innerWidth / 2;
         const centerY = window.innerHeight / 2;
-
         const moveX = (e.clientX - centerX) / centerX;
         const moveY = (e.clientY - centerY) / centerY;
 
-        const planets = document.querySelectorAll('.planet');
-        planets.forEach(planet => {
-            planet.style.setProperty('--mouse-x', moveX);
-            planet.style.setProperty('--mouse-y', moveY);
+        // Parallax on planets
+        const depths = [3, -5, -10, 3];
+        document.querySelectorAll('.planet-wrapper').forEach((planet, i) => {
+            const d = depths[i] || 0;
+            planet.style.setProperty('--mouse-x', moveX * d);
+            planet.style.setProperty('--mouse-y', moveY * d);
         });
 
+        // Subtle sun movement
+        const sun = document.querySelector('.sun-wrapper');
+        if (sun) {
+            sun.style.setProperty('--mouse-x', moveX * 1);
+            sun.style.setProperty('--mouse-y', moveY * 1);
+        }
+
+        // Background drift
         document.body.style.backgroundPosition = `${50 + (moveX * 2)}% ${50 + (moveY * 2)}%`;
     });
 
+    // ===== MODAL OPEN =====
     function openModal(modalId, buttonElement) {
         const sound = document.getElementById('swooshSound');
         const takeover = document.getElementById('screen-takeover');
 
-        if (buttonElement && buttonElement.classList.contains('planet')) {
-            const takeoverColor = colorMap[modalId] || '#ffffff';
+        if (buttonElement) {
+            const takeoverColor = colorMap[modalId] || '#d4a853';
             takeover.style.backgroundColor = takeoverColor;
             takeover.style.setProperty('--click-x', clickX);
             takeover.style.setProperty('--click-y', clickY);
@@ -154,12 +265,13 @@
                 document.getElementById(modalId).classList.add('open');
                 takeover.classList.remove('active');
                 takeover.style.backgroundColor = 'transparent';
-            }, 1000); 
+            }, 900);
         } else {
             document.getElementById(modalId).classList.add('open');
         }
     }
 
+    // ===== MODAL CLOSE =====
     function closeModal(modalId) {
         document.getElementById(modalId).classList.remove('open');
     }
@@ -168,33 +280,64 @@
         if (event.target.classList.contains('modal-overlay')) {
             event.target.classList.remove('open');
         }
+    };
+
+    // Escape key to close
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.modal-overlay.open').forEach(m => m.classList.remove('open'));
+        }
+    });
+
+    // ===== FLUID SIZING =====
+    function expSize(dim, minDim, maxDim, minSize, maxSize, exponent) {
+        let t = (dim - minDim) / (maxDim - minDim);
+        t = Math.max(0, Math.min(1, t));
+        let p = 1 - t;
+        return maxSize - (maxSize - minSize) * Math.pow(p, exponent);
     }
-   function expSize(dim, minDim, maxDim, minSize, maxSize, exponent) {
-    let t = (dim - minDim) / (maxDim - minDim);
-    t = Math.max(0, Math.min(1, t));
-    let p = 1 - t;
-    return maxSize - (maxSize - minSize) * Math.pow(p, exponent);
-}
 
     function updatePlanetSizes() {
         const vw = window.innerWidth;
         const vmin = Math.min(window.innerWidth, window.innerHeight);
-        const exponent = 1;
 
-        document.querySelector('.top-left img').style.width =
-            expSize(vw, 320, 1880, 130, 290, exponent) + 'px';
-        document.querySelector('.top-right img').style.width =
-            expSize(vw, 320, 1880, 140, 400, exponent) + 'px';
-        document.querySelector('.bottom-left img').style.width =
-            expSize(vw, 320, 1880, 140, 400, exponent) + 'px';
-        document.querySelector('.bottom-right img').style.width =
-            expSize(vw, 320, 1880, 160, 390, exponent) + 'px';
-        document.querySelector('.sun img').style.width =
-            expSize(vmin, 320, 1040, 100, 640, exponent) + 'px';
-}
+        const tl = document.querySelector('.p-top-left img');
+        const tr = document.querySelector('.p-top-right img');
+        const bl = document.querySelector('.p-bottom-left img');
+        const br = document.querySelector('.p-bottom-right img');
+        const sun = document.querySelector('.sun-img');
 
-window.addEventListener('resize', updatePlanetSizes);
-updatePlanetSizes();
+        if (tl) tl.style.width = expSize(vw, 320, 1880, 130, 290, 1) + 'px';
+        if (tr) tr.style.width = expSize(vw, 320, 1880, 140, 400, 1) + 'px';
+        if (bl) bl.style.width = expSize(vw, 320, 1880, 140, 400, 1) + 'px';
+        if (br) br.style.width = expSize(vw, 320, 1880, 160, 390, 1) + 'px';
+        
+        // Enlarged Sun Sizing
+        if (sun) sun.style.width = expSize(vmin, 350, 1040, 250, 500, 1) + 'px';
+    }
+
+    window.addEventListener('resize', updatePlanetSizes);
+    updatePlanetSizes();
+
+    // ===== FLOATING PARTICLES =====
+    function spawnParticle() {
+        const container = document.getElementById('particles');
+        if (!container) return;
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = Math.random() * 3 + 1;
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        p.style.left = Math.random() * 100 + 'vw';
+        p.style.animationDuration = (Math.random() * 15 + 10) + 's';
+        p.style.animationDelay = (Math.random() * 5) + 's';
+        container.appendChild(p);
+        setTimeout(() => p.remove(), 25000);
+    }
+
+    for (let i = 0; i < 15; i++) spawnParticle();
+    setInterval(spawnParticle, 4000);
 </script>
+
 </body>
 </html>
