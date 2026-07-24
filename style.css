@@ -21,9 +21,10 @@
 body {
     background: var(--bg-deep);
     background-image: url('Image/Background/steve8.png');
-    background-size: 105% 105%;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     min-height: 100vh;
     margin: 0;
     position: relative;
@@ -32,6 +33,18 @@ body {
     font-family: 'Caveat', cursive;
     color: var(--ink);
     cursor: crosshair;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(212,168,83,0.16), transparent 24%),
+        radial-gradient(circle at 80% 15%, rgba(95,180,162,0.14), transparent 22%),
+        linear-gradient(135deg, rgba(10,22,40,0.12), rgba(10,22,40,0.4));
+    z-index: 0;
 }
 
 * {
@@ -129,6 +142,7 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 1;
+    padding: 0 4vw;
 }
 
 .orbit-ring {
@@ -138,15 +152,15 @@ body {
     pointer-events: none;
 }
 
-.orbit-ring.r1 { width: 34vmin; height: 34vmin; }
-.orbit-ring.r2 { width: 50vmin; height: 50vmin; border-style: dotted; }
-.orbit-ring.r3 { width: 68vmin; height: 68vmin; }
+.orbit-ring.r1 { width: min(34vmin, 34rem); height: min(34vmin, 34rem); }
+.orbit-ring.r2 { width: min(50vmin, 50rem); height: min(50vmin, 50rem); border-style: dotted; }
+.orbit-ring.r3 { width: min(68vmin, 68rem); height: min(68vmin, 68rem); }
 
 /* ABOUT ME RING AROUND SUN */
 .about-me-ring {
     position: absolute;
-    width: clamp(200px, 32vmin, 400px);
-    height: clamp(200px, 32vmin, 400px);
+    width: clamp(240px, 25vw, 420px);
+    height: clamp(240px, 25vw, 420px);
     border-radius: 50%;
     border: 1.5px dashed rgba(212,168,83,0.35);
     pointer-events: none;
@@ -198,9 +212,8 @@ body {
  /* ===== SUN ===== */
 
 .sun-art {
-    /* Starts near ~650px-800px on large displays, but continuously scales down as window shrinks */
-    width: clamp(80px, 55vmin, 650px);
-    height: clamp(80px, 55vmin, 650px);
+    width: clamp(150px, 18vw, 320px);
+    height: clamp(150px, 18vw, 320px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -219,10 +232,9 @@ body {
 }
 
 .sun-label {
-    /* Adjusted top margin so the label stays neatly tucked under the scaled sun */
-    margin-top: 15px;
+    margin-top: 16px;
     font-family: 'Caveat', cursive;
-    font-size: 1.75rem;
+    font-size: clamp(1.25rem, 1.6vw, 1.8rem);
     font-weight: 700;
     color: var(--accent-gold);
     white-space: nowrap;
@@ -303,27 +315,27 @@ body {
     transform: translateX(-50%) translateY(0);
 }
 
-.p-top-left { top: 12%; left: 28%; }
-.p-top-right { top: 2%; right: 2%; }
-.p-bottom-left { bottom: 12%; left: 8%; }
-.p-bottom-right { bottom: 6%; right: 18%; }
+.p-top-left { top: 15%; left: 23%; }
+.p-top-right { top: 5%; right: 5%; }
+.p-bottom-left { bottom: 14%; left: 8%; }
+.p-bottom-right { bottom: 8%; right: 18%; }
 
 /* Scaling pulled from doc 1 (top-left/top-right/bottom-left/bottom-right) */
-.p-top-left .planet-art     { width: clamp(140px, 26vw, 280px); height: clamp(140px, 26vw, 280px); }
-.p-top-right .planet-art    { width: clamp(170px, 32vw, 380px); height: clamp(170px, 32vw, 380px); }
-.p-bottom-left .planet-art  { width: clamp(170px, 32vw, 380px); height: clamp(170px, 32vw, 380px); }
-.p-bottom-right .planet-art { width: clamp(190px, 36vw, 420px); height: clamp(190px, 36vw, 420px); }
+.p-top-left .planet-art     { width: clamp(140px, 15vw, 260px); height: clamp(140px, 15vw, 260px); }
+.p-top-right .planet-art    { width: clamp(160px, 16vw, 300px); height: clamp(160px, 16vw, 300px); }
+.p-bottom-left .planet-art  { width: clamp(160px, 16vw, 300px); height: clamp(160px, 16vw, 300px); }
+.p-bottom-right .planet-art { width: clamp(180px, 18vw, 330px); height: clamp(180px, 18vw, 330px); }
 
 /* ===== SOCIAL CONSTELLATION / LOGO ===== */
 .constellation-left {
     position: fixed;
-    top: 6%;
+    top: 5%;
     left: 3%;
     z-index: 5;
 
     display: grid;
     grid-template-columns: repeat(2, auto);
-    gap: 18px;
+    gap: 22px;
 }
 .instagram {
     grid-column: 1;
@@ -342,8 +354,8 @@ body {
 
 /* Scaling pulled from doc 1: clamp(60px, 8vw, 125px) */
 .star-node {
-    width: clamp(60px, 8vw, 125px);
-    height: clamp(60px, 8vw, 125px);
+    width: clamp(70px, 6.2vw, 112px);
+    height: clamp(70px, 6.2vw, 112px);
     background: transparent;
     border: none;
     display: flex;
@@ -376,15 +388,71 @@ body {
 /* ===== SITE TITLE ===== */
 .site-title {
     position: fixed;
-    bottom: 20px;
-    left: 24px;
+    bottom: 28px;
+    left: 32px;
     font-family: 'DM Serif Display', serif;
-    font-size: clamp(0.8rem, 1.5vw, 1rem);
-    color: rgba(255,255,255,0.15);
-    letter-spacing: 4px;
+    font-size: clamp(0.9rem, 1.1vw, 1.05rem);
+    color: rgba(255,255,255,0.18);
+    letter-spacing: 0.35em;
     text-transform: uppercase;
     z-index: 3;
     pointer-events: none;
+}
+
+@media (min-width: 1600px) {
+    .orbit-system {
+        padding: 0 5vw;
+    }
+
+    .sun-art {
+        width: clamp(180px, 15vw, 340px);
+        height: clamp(180px, 15vw, 340px);
+    }
+
+    .planet-wrapper:hover {
+        transform: translate(calc(var(--mouse-x, 0) * 1px), calc(var(--mouse-y, 0) * 1px)) scale(1.12);
+    }
+
+    .modal-parchment {
+        width: min(900px, 92vw);
+    }
+}
+
+@media (max-height: 1080px) and (max-width: 1920px) {
+    .orbit-system {
+        padding: 0 3vw;
+    }
+
+    .sun-art {
+        width: clamp(130px, 15vw, 260px);
+        height: clamp(130px, 15vw, 260px);
+    }
+
+    .p-top-left { top: 15%; left: 22%; }
+    .p-top-right { top: 6%; right: 6%; }
+    .p-bottom-left { bottom: 14%; left: 8%; }
+    .p-bottom-right { bottom: 8%; right: 18%; }
+
+    .p-top-left .planet-art     { width: clamp(120px, 13vw, 220px); height: clamp(120px, 13vw, 220px); }
+    .p-top-right .planet-art    { width: clamp(140px, 14vw, 250px); height: clamp(140px, 14vw, 250px); }
+    .p-bottom-left .planet-art  { width: clamp(140px, 14vw, 250px); height: clamp(140px, 14vw, 250px); }
+    .p-bottom-right .planet-art { width: clamp(160px, 15vw, 280px); height: clamp(160px, 15vw, 280px); }
+
+    .constellation-left {
+        top: 4%;
+        left: 2.5%;
+        gap: 16px;
+    }
+
+    .star-node {
+        width: clamp(60px, 5.5vw, 92px);
+        height: clamp(60px, 5.5vw, 92px);
+    }
+
+    .site-title {
+        bottom: 22px;
+        left: 24px;
+    }
 }
 
 /* ===== SCREEN TAKEOVER ===== */
