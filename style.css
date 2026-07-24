@@ -159,11 +159,14 @@ body::before {
 /* ABOUT ME RING AROUND SUN */
 .about-me-ring {
     position: absolute;
-    width: clamp(240px, 25vw, 420px);
-    height: clamp(240px, 25vw, 420px);
+    top: 50%;
+    left: 50%;
+    width: clamp(220px, 23vw, 380px);
+    height: clamp(220px, 23vw, 380px);
     border-radius: 50%;
     border: 1.5px dashed rgba(212,168,83,0.35);
     pointer-events: none;
+    transform: translate(-50%, -50%);
     animation: rotateRing 30s linear infinite;
 }
 
@@ -175,20 +178,22 @@ body::before {
 /* ===== SUN ===== */
 .sun-wrapper {
     position: absolute;
+    top: 50%;
+    left: 50%;
     z-index: 10;
     transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     cursor: pointer;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    transform: translate(
+    justify-content: center;
+    transform: translate(-50%, -50%) translate(
         calc(var(--mouse-x, 0) * 1px),
         calc(var(--mouse-y, 0) * 1px)
     );
 }
 
 .sun-wrapper:hover {
-    transform: translate(
+    transform: translate(-50%, -50%) translate(
         calc(var(--mouse-x, 0) * 1px),
         calc(var(--mouse-y, 0) * 1px)
     ) scale(1.08);
@@ -212,8 +217,8 @@ body::before {
  /* ===== SUN ===== */
 
 .sun-art {
-    width: clamp(150px, 18vw, 320px);
-    height: clamp(150px, 18vw, 320px);
+    width: clamp(170px, 20vw, 360px);
+    height: clamp(170px, 20vw, 360px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -232,14 +237,16 @@ body::before {
 }
 
 .sun-label {
-    margin-top: 16px;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-5px);
     font-family: 'Caveat', cursive;
     font-size: clamp(1.25rem, 1.6vw, 1.8rem);
     font-weight: 700;
     color: var(--accent-gold);
     white-space: nowrap;
     opacity: 0;
-    transform: translateY(-5px);
     transition: opacity 0.3s ease, transform 0.3s ease;
     text-align: center;
     pointer-events: none;
@@ -248,7 +255,7 @@ body::before {
 
 .sun-wrapper:hover .sun-label {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
 }
 
 /* ===== PLANETS ===== */
@@ -315,10 +322,10 @@ body::before {
     transform: translateX(-50%) translateY(0);
 }
 
-.p-top-left { top: 15%; left: 23%; }
-.p-top-right { top: 5%; right: 5%; }
-.p-bottom-left { bottom: 14%; left: 8%; }
-.p-bottom-right { bottom: 8%; right: 18%; }
+.p-top-left { top: 12%; left: 23%; }
+.p-top-right { top: 2%; right: 5%; }
+.p-bottom-left { bottom: 10%; left: 8%; }
+.p-bottom-right { bottom: 4%; right: 18%; }
 
 /* Scaling pulled from doc 1 (top-left/top-right/bottom-left/bottom-right) */
 .p-top-left .planet-art     { width: clamp(140px, 15vw, 260px); height: clamp(140px, 15vw, 260px); }
@@ -405,8 +412,8 @@ body::before {
     }
 
     .sun-art {
-        width: clamp(180px, 15vw, 340px);
-        height: clamp(180px, 15vw, 340px);
+        width: clamp(200px, 17vw, 380px);
+        height: clamp(200px, 17vw, 380px);
     }
 
     .planet-wrapper:hover {
@@ -424,8 +431,8 @@ body::before {
     }
 
     .sun-art {
-        width: clamp(130px, 15vw, 260px);
-        height: clamp(130px, 15vw, 260px);
+        width: clamp(150px, 17vw, 300px);
+        height: clamp(150px, 17vw, 300px);
     }
 
     .p-top-left { top: 15%; left: 22%; }
