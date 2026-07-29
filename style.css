@@ -157,22 +157,25 @@ body::before {
 .orbit-ring.r3 { width: min(68vmin, 68rem); height: min(68vmin, 68rem); }
 
 /* ABOUT ME RING AROUND SUN */
-.about-me-ring {
+.about-me-ring-wrap {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: clamp(220px, 23vw, 380px);
-    height: clamp(220px, 23vw, 380px);
-    border-radius: 50%;
-    border: 1.5px dashed rgba(212,168,83,0.35);
-    pointer-events: none;
     transform: translate(-50%, -50%);
+    pointer-events: none;
     animation: rotateRing 30s linear infinite;
 }
 
+.about-me-ring {
+    width: clamp(220px, 23vw, 440px);
+    height: clamp(220px, 23vw, 440px);
+    border-radius: 50%;
+    border: 1.5px dashed rgba(212,168,83,0.35);
+}
+
 @keyframes rotateRing {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 /* ===== SUN ===== */
@@ -411,6 +414,11 @@ body::before {
         padding: 0 5vw;
     }
 
+    .about-me-ring {
+        width: clamp(260px, 25vw, 440px);
+        height: clamp(260px, 25vw, 440px);
+    }
+
     .sun-art {
         width: clamp(200px, 17vw, 380px);
         height: clamp(200px, 17vw, 380px);
@@ -428,6 +436,11 @@ body::before {
 @media (max-height: 1080px) and (max-width: 1920px) {
     .orbit-system {
         padding: 0 3vw;
+    }
+
+    .about-me-ring {
+        width: clamp(200px, 21vw, 380px);
+        height: clamp(200px, 21vw, 380px);
     }
 
     .sun-art {
