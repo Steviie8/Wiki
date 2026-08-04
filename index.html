@@ -169,11 +169,47 @@
             <div class="corner-deco bl"></div>
             <div class="corner-deco br"></div>
             <button class="modal-close" onclick="closeModal('VideoGamesModal')">✕</button>
-            <div class="modal-content"><h2>Webcam Tracker</h2>
-            <div class="divider"></div>
-            <video controls muted class="modal-video">
-                <source src="Image/Webcam Tracker/TrackingExample.mp4" type="video/mp4">
-            </video></div>
+            <div class="modal-content">
+                <h2>Webcam Tracker</h2>
+                <div class="divider"></div>
+
+                <div class="tracker-shell">
+                    <div class="tracker-summary">
+                        <p>This project started as a simple idea: make a webcam feel more alive by following a person’s face instead of staying fixed in place. I built it around face detection, then added a small mechanical mount so the camera could move smoothly and stay centered.</p>
+                    </div>
+
+                    <div class="tracker-highlights">
+                        <div class="tracker-card">
+                            <h3>What it does</h3>
+                            <ul>
+                                <li>Detects a face and finds the center of the detected area.</li>
+                                <li>Uses that point to adjust the camera position.</li>
+                                <li>Works well for keeping a subject framed without constant manual adjustment.</li>
+                            </ul>
+                        </div>
+                        <div class="tracker-card">
+                            <h3>Build notes</h3>
+                            <ul>
+                                <li>Used a compact setup that could be mounted on a desk or small stand.</li>
+                                <li>Added spacer pieces and tighter fitting parts to reduce wobble.</li>
+                                <li>Improved stability over time through a few simple mechanical revisions.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="tracker-quote">
+                        The goal was straightforward: make the camera feel more intentional and less like a static setup.
+                    </div>
+
+                    <video controls muted class="modal-video">
+                        <source src="Image/Webcam Tracker/TrackingExample.mp4" type="video/mp4">
+                    </video>
+
+                    <div class="tracker-footnote">
+                        This project is part of the larger goal of building a more responsive, hands-on system that blends software, hardware, and simple mechanical design.
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -201,10 +237,10 @@
 <script>
     // ===== COLOR MAP FOR TAKEOVER =====
     const colorMap = {
-        'rccarModal': '#1a5fb4',
-        'MechanicalArmModal': '#6f32a8',
-        'ScreenModal': '#865439',
-        'VideoGamesModal': '#20b2aa',
+        'rccarModal': '#4b8dff',
+        'MechanicalArmModal': '#9b6dff',
+        'ScreenModal': '#c88a4f',
+        'VideoGamesModal': '#3fd8c3',
         'aboutMeModal': '#d4a853'
     };
 
