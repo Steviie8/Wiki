@@ -22,8 +22,8 @@
     <!-- Floating Particles Container -->
     <div id="particles"></div>
 
-    <!-- Screen Takeover for Modal Transitions -->
-    <div id="screen-takeover"></div>
+    <!-- Solid project-color transition and modal backdrop -->
+    <div id="screen-takeover" aria-hidden="true"></div>
 
     <!-- ===== ORBIT SYSTEM ===== -->
     <div class="orbit-system">
@@ -237,30 +237,30 @@
 
                 <div class="tracker-shell">
                     <div class="tracker-summary">
-                        <p>This project started as a simple idea: make a webcam feel more alive by following a person’s face instead of staying fixed in place. I built it around face detection, then added a small mechanical mount so the camera could move smoothly and stay centered.</p>
+                        <p>I wanted my webcam to follow me around the desk instead of pointing at one spot. I used face detection to see where I was in the frame, then built a small two-axis mount that nudges the camera back toward the middle. Getting it to move without shaking or constantly correcting itself took the most testing.</p>
                     </div>
 
                     <div class="tracker-highlights">
                         <div class="tracker-card">
-                            <h3>What it does</h3>
+                            <h3>What I built</h3>
                             <ul>
-                                <li>Detects a face and finds the center of the detected area.</li>
-                                <li>Uses that point to adjust the camera position.</li>
-                                <li>Works well for keeping a subject framed without constant manual adjustment.</li>
+                                <li>Face detection finds where my face sits in the webcam frame.</li>
+                                <li>The mount moves left/right and up/down to bring it closer to center.</li>
+                                <li>Small adjustments keep it from jumping past the target.</li>
                             </ul>
                         </div>
                         <div class="tracker-card">
-                            <h3>Build notes</h3>
+                            <h3>What I had to fix</h3>
                             <ul>
-                                <li>Used a compact setup that could be mounted on a desk or small stand.</li>
-                                <li>Added spacer pieces and tighter fitting parts to reduce wobble.</li>
-                                <li>Improved stability over time through a few simple mechanical revisions.</li>
+                                <li>The first version had enough wobble to make the camera shake.</li>
+                                <li>I added spacers and tightened up the fit between the moving parts.</li>
+                                <li>It took a few mechanical changes before the movement felt steady.</li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="tracker-quote">
-                        The goal was straightforward: make the camera feel more intentional and less like a static setup.
+                        I was not trying to make it “smart” — I just wanted it to move when I moved and stop when I stopped.
                     </div>
 
                     <video controls muted class="modal-video">
@@ -268,7 +268,7 @@
                     </video>
 
                     <div class="tracker-footnote">
-                        This project is part of the larger goal of building a more responsive, hands-on system that blends software, hardware, and simple mechanical design.
+                        It is one of the projects where I got to combine code, 3D-printed parts, and a lot of small hands-on adjustments.
                     </div>
                 </div>
             </div>
@@ -286,7 +286,7 @@
             <div class="modal-content"><h2>About me</h2>
             <div class="divider"></div>
             <h3>Hi, I'm Steven</h3>
-            <img src="Image/Steven/steven.jpg" alt="Steven Xu" class="about-me-img">
+            <img src="Image/Steven/Steven.jpg" alt="Steven Xu" class="about-me-img">
             <p>My name is Steven Xu, and I am a high school student with a deep passion for hardware engineering, software development, and robotics. Over the years, my fascination with microcontrollers has driven me to design and build numerous custom devices, bridging the gap between hardware and software. This love for hands-on creation led me to join FRC Robotics Team Pearadox 5414, where I honed essential industry skills including CAD, iterative design, thorough documentation, and practical engineering principles. I also enjoy making games, as it allows me to use my mind to create and communicate with others to be able to release fun and engaging games.</p>
             <p>My technical portfolio spans both physical and digital realms. On the hardware side, I have engineered a 32x64 LED matrix display that fetches and renders real-time API data, designed and CAD-modeled custom enclosures for RC vehicles, and built a webcam that tracks your face with 2 DOF through AI. Learning about joints and tracking, I then built a 5-DOF robotic arm—a project that required extensive prototyping and optimization to build and operate at a high level. These projects were all created using a 3d printer, which is something that I have spent countless hours fixing and upgrading so that I can get the fastest and best prints. Complementing my hardware experience is a strong software foundation in Python, Java, C++, and GDScript, which I also leverage to build engaging games that connect people in game jams and hackathons. Along with these games, I use coding to optimize measuring volunteering hours in my volunteer organization using web dev and cloud automation.</p>
             <p>Outside of my technical pursuits, I am dedicated to community service and leadership. In my role as President of the We Care Act Pearland branch, I coordinate student-driven musical showcases for residents at local senior centers. Drawing on over a decade of guitar experience and five years in the school band, I leverage my musical background to drive charitable initiatives, raise vital support for Alzheimer's research, and foster meaningful connections through performance. Along with music, I enjoy going into the outdoors and fishing with friends and family, allowing me to better connect with people and make new memories.</p>
@@ -297,23 +297,7 @@
     </div>
 
 <script>
-    // ===== COLOR MAP FOR TAKEOVER =====
-    const colorMap = {
-        'rccarModal': '#4b8dff',
-        'MechanicalArmModal': '#9b6dff',
-        'ScreenModal': '#c88a4f',
-        'VideoGamesModal': '#3fd8c3',
-        'aboutMeModal': '#d4a853'
-    };
-
     // ===== MOUSE TRACKING =====
-    let clickX = '50%';
-    let clickY = '50%';
-
-    window.addEventListener('click', (e) => {
-        clickX = e.clientX + 'px';
-        clickY = e.clientY + 'px';
-    });
 
     // ===== PARALLAX =====
     window.addEventListener('mousemove', (e) => {
@@ -341,49 +325,110 @@
         document.body.style.backgroundPosition = `${50 + (moveX * 2)}% ${50 + (moveY * 2)}%`;
     });
 
-    // ===== MODAL OPEN =====
+    // ===== PROJECT-COLOR MODAL TRANSITIONS =====
+    const colorMap = {
+        'rccarModal': '#4b8dff',
+        'MechanicalArmModal': '#9b6dff',
+        'ScreenModal': '#c88a4f',
+        'VideoGamesModal': '#3fd8c3',
+        'aboutMeModal': '#d4a853'
+    };
+    const screenTakeover = document.getElementById('screen-takeover');
+    const colorTransitionDuration = 620;
+    const modalRevealDelay = 700;
+    let activeModalId = null;
+    let transitionInProgress = false;
+    let takeoverOrigin = { x: '50vw', y: '50vh' };
+
+    function setScreenTakeover(modalId, trigger) {
+        // Use the visible artwork, not the larger clickable wrapper or its label.
+        const planetImage = trigger.querySelector('.planet-art img, .sun-art img');
+        const bounds = (planetImage || trigger).getBoundingClientRect();
+        takeoverOrigin = {
+            x: `${bounds.left + (bounds.width / 2)}px`,
+            y: `${bounds.top + (bounds.height / 2)}px`
+        };
+        screenTakeover.style.setProperty('--takeover-color', colorMap[modalId] || '#d4a853');
+        screenTakeover.style.setProperty('--takeover-x', takeoverOrigin.x);
+        screenTakeover.style.setProperty('--takeover-y', takeoverOrigin.y);
+        screenTakeover.style.clipPath = `circle(0px at ${takeoverOrigin.x} ${takeoverOrigin.y})`;
+    }
+
+    function resetScreenTakeover() {
+        screenTakeover.classList.remove('is-visible', 'is-preparing');
+        screenTakeover.style.removeProperty('clip-path');
+    }
+
+    function setTakeoverRadius(radius) {
+        screenTakeover.style.clipPath = `circle(${radius} at ${takeoverOrigin.x} ${takeoverOrigin.y})`;
+    }
+
     function openModal(modalId, buttonElement) {
+        const modal = document.getElementById(modalId);
         const sound = document.getElementById('swooshSound');
-        const takeover = document.getElementById('screen-takeover');
+        if (!modal || transitionInProgress) return;
 
-        if (buttonElement) {
-            const takeoverColor = colorMap[modalId] || '#d4a853';
-            takeover.style.backgroundColor = takeoverColor;
-            takeover.style.setProperty('--click-x', clickX);
-            takeover.style.setProperty('--click-y', clickY);
+        activeModalId = modalId;
 
-            if (sound) {
-                sound.currentTime = 0;
-                sound.play().catch(err => console.log("Audio play blocked."));
-            }
-
-            takeover.classList.add('active');
-
-            setTimeout(() => {
-                document.getElementById(modalId).classList.add('open');
-                takeover.classList.remove('active');
-                takeover.style.backgroundColor = 'transparent';
-            }, 900);
-        } else {
-            document.getElementById(modalId).classList.add('open');
+        if (!buttonElement) {
+            modal.classList.add('open');
+            return;
         }
+
+        transitionInProgress = true;
+        resetScreenTakeover();
+        // Freeze the old clip-path before moving the origin to the new planet.
+        screenTakeover.classList.add('is-preparing');
+        setScreenTakeover(modalId, buttonElement);
+        void screenTakeover.offsetWidth;
+        screenTakeover.classList.remove('is-preparing');
+        screenTakeover.classList.add('is-visible');
+        void screenTakeover.offsetWidth;
+        window.requestAnimationFrame(() => setTakeoverRadius('150vmax'));
+
+        if (sound) {
+            sound.currentTime = 0;
+            sound.play().catch(() => {});
+        }
+
+        window.setTimeout(() => {
+            modal.classList.add('color-backed');
+            modal.classList.add('open');
+            transitionInProgress = false;
+        }, modalRevealDelay);
     }
 
     // ===== MODAL CLOSE =====
     function closeModal(modalId) {
-        document.getElementById(modalId).classList.remove('open');
+        const modal = document.getElementById(modalId);
+        if (!modal || !modal.classList.contains('open') || transitionInProgress) return;
+
+        modal.classList.remove('open');
+        if (activeModalId !== modalId) return;
+
+        transitionInProgress = true;
+        setTakeoverRadius('150vmax');
+        void screenTakeover.offsetWidth;
+        window.requestAnimationFrame(() => setTakeoverRadius('0px'));
+
+        window.setTimeout(() => {
+            resetScreenTakeover();
+            modal.classList.remove('color-backed');
+            transitionInProgress = false;
+            activeModalId = null;
+        }, colorTransitionDuration);
     }
 
     window.onclick = function(event) {
         if (event.target.classList.contains('modal-overlay')) {
-            event.target.classList.remove('open');
+            closeModal(event.target.id);
         }
     };
 
     // Escape key to close
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
-            document.querySelectorAll('.modal-overlay.open').forEach(m => m.classList.remove('open'));
+            document.querySelectorAll('.modal-overlay.open').forEach(m => closeModal(m.id));
         }
     });
 
