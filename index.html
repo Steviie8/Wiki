@@ -336,27 +336,44 @@
     const screenTakeover = document.getElementById('screen-takeover');
     const colorTransitionDuration = 620;
     const modalRevealDelay = 700;
+    const overlayOpacity = '0.72';
     let activeModalId = null;
     let transitionInProgress = false;
     let takeoverOrigin = { x: '50vw', y: '50vh' };
+    let lastPlanetPointer = null;
+
+    document.addEventListener('pointerdown', (event) => {
+        const trigger = event.target instanceof Element
+            ? event.target.closest('.planet-wrapper, .sun-wrapper')
+            : null;
+        if (trigger) {
+            lastPlanetPointer = { trigger, x: event.clientX, y: event.clientY };
+        }
+    }, true);
 
     function setScreenTakeover(modalId, trigger) {
         // Use the visible artwork, not the larger clickable wrapper or its label.
         const planetImage = trigger.querySelector('.planet-art img, .sun-art img');
         const bounds = (planetImage || trigger).getBoundingClientRect();
+        const pointer = lastPlanetPointer?.trigger === trigger ? lastPlanetPointer : null;
         takeoverOrigin = {
-            x: `${bounds.left + (bounds.width / 2)}px`,
-            y: `${bounds.top + (bounds.height / 2)}px`
+            x: `${pointer ? pointer.x : bounds.left + (bounds.width / 2)}px`,
+            y: `${pointer ? pointer.y : bounds.top + (bounds.height / 2)}px`
         };
-        screenTakeover.style.setProperty('--takeover-color', colorMap[modalId] || '#d4a853');
+        lastPlanetPointer = null;
+        const projectColor = colorMap[modalId] || '#d4a853';
+        screenTakeover.style.setProperty('--takeover-color', projectColor);
         screenTakeover.style.setProperty('--takeover-x', takeoverOrigin.x);
         screenTakeover.style.setProperty('--takeover-y', takeoverOrigin.y);
+        screenTakeover.style.backgroundColor = projectColor;
         screenTakeover.style.clipPath = `circle(0px at ${takeoverOrigin.x} ${takeoverOrigin.y})`;
     }
 
     function resetScreenTakeover() {
         screenTakeover.classList.remove('is-visible', 'is-preparing');
         screenTakeover.style.removeProperty('clip-path');
+        screenTakeover.style.removeProperty('opacity');
+        screenTakeover.style.removeProperty('background-color');
     }
 
     function setTakeoverRadius(radius) {
@@ -383,6 +400,7 @@
         void screenTakeover.offsetWidth;
         screenTakeover.classList.remove('is-preparing');
         screenTakeover.classList.add('is-visible');
+        screenTakeover.style.opacity = overlayOpacity;
         void screenTakeover.offsetWidth;
         window.requestAnimationFrame(() => setTakeoverRadius('150vmax'));
 
@@ -393,6 +411,8 @@
 
         window.setTimeout(() => {
             modal.classList.add('color-backed');
+            modal.style.background = 'transparent';
+            modal.style.backdropFilter = 'none';
             modal.classList.add('open');
             transitionInProgress = false;
         }, modalRevealDelay);
@@ -414,6 +434,8 @@
         window.setTimeout(() => {
             resetScreenTakeover();
             modal.classList.remove('color-backed');
+            modal.style.removeProperty('background');
+            modal.style.removeProperty('backdrop-filter');
             transitionInProgress = false;
             activeModalId = null;
         }, colorTransitionDuration);
