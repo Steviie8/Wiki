@@ -100,31 +100,93 @@
             <div class="corner-deco bl"></div>
             <div class="corner-deco br"></div>
             <button class="modal-close" onclick="closeModal('rccarModal')">✕</button>
-            <div class="modal-content"><h2>RC Car</h2>
+            <div class="modal-content rc-project"><h2>ESP32 RC Car</h2>
             <div class="divider"></div>
-            <h3>Overview</h3>
-            <p>I designed, built, and programmed a custom, network-controlled robotic vehicle platform with an ESP32 microcontroller after modifying hardware for a failed proprietary system. I developed a local web server and a full-duplex communication interface using WebSockets with ESPAsyncWebServer and AsyncTCP. This setup allowed for low-latency manual driving through a custom HTML, CSS, and JavaScript web dashboard that can handle multiple key inputs. On the hardware side, I integrated and synchronized several subsystems using I2C and GPIO protocols. This included dual H-bridge DC motor drivers, a precision steering servo, a SSD1306 OLED UI display, and NeoPixel LED indicators for real-time system status feedback. To protect and unify the platform, I designed and built a custom mechanical enclosure using CAD software. I successfully managed tight space constraints to fit internal component mounts, thermal ventilation channels, and precise cutouts for the telemetry screen and status LEDs.</p>
-            <img src="Image/RCcar/IMG_3618.jpg" alt="RC car" class="modal-img">
+            <div class="project-kicker">A real rebuild, still in progress</div>
+            <div class="milestone-card">
+                <span class="milestone-pulse" aria-hidden="true"></span>
+                <div>
+                    <span class="milestone-label">Latest milestone</span>
+                    <strong>Motor running on the new ESP32 setup</strong>
+                    <p>The original robot controller stopped working, so I rebuilt the control system around an ESP32 and successfully powered the drive motor again.</p>
+                </div>
+            </div>
+
+            <section class="rc-model-section" aria-labelledby="rc-model-title">
+                <div class="rc-model-heading">
+                    <div>
+                        <span class="model-eyebrow">Hands-on build view</span>
+                        <h3 id="rc-model-title">Touch the car</h3>
+                    </div>
+                    <span class="model-gesture-hint" aria-hidden="true">tap a part ↘</span>
+                </div>
+
+                <div class="rc-model-stage">
+                    <div class="rc-touch-model" tabindex="0" aria-label="Interactive photo model of the ESP32 RC car">
+                        <div class="model-photo-layer">
+                            <img src="Image/RCcar/IMG_3618.jpg" alt="Steven's green ESP32 RC car viewed from the front with its wiring and electronics exposed">
+                        </div>
+                        <button class="model-hotspot" type="button" style="--hotspot-x: 49%; --hotspot-y: 34%;" data-title="ESP32 controller" data-detail="The replacement brain. It runs the web controls and coordinates the car's electronics." aria-label="Show ESP32 controller details"><span>1</span></button>
+                        <button class="model-hotspot" type="button" style="--hotspot-x: 67%; --hotspot-y: 32%;" data-title="Motor driver" data-detail="The H-bridge turns the ESP32's small control signals into power for the drive motors." aria-label="Show motor driver details"><span>2</span></button>
+                        <button class="model-hotspot" type="button" style="--hotspot-x: 31%; --hotspot-y: 55%;" data-title="OLED display" data-detail="A small dashboard mounted up front for live status and debugging feedback." aria-label="Show OLED display details"><span>3</span></button>
+                        <button class="model-hotspot" type="button" style="--hotspot-x: 73%; --hotspot-y: 63%;" data-title="Drive system" data-detail="Four wheels and geared motors put the rebuilt electronics back on the pavement." aria-label="Show drive system details"><span>4</span></button>
+                        <span class="model-depth-edge" aria-hidden="true"></span>
+                    </div>
+                    <div class="model-floor-shadow" aria-hidden="true"></div>
+                </div>
+
+                <div class="model-readout" aria-live="polite">
+                    <span class="readout-number">01</span>
+                    <div>
+                        <strong>ESP32 controller</strong>
+                        <p>The replacement brain. It runs the web controls and coordinates the car's electronics.</p>
+                    </div>
+                </div>
+            </section>
+
+            <figure class="rc-gallery">
+                <img src="Image/RCcar/esp32-build-gallery.jpg" alt="Three views of the green ESP32 RC car with its exposed electronics, yellow wheels, custom enclosure, and OLED display">
+                <figcaption>From bench wiring to outdoor testing: the rebuilt ESP32 platform in motion-ready form.</figcaption>
+            </figure>
+
+            <h3>Built back from a failed controller</h3>
+            <p>I redesigned the car as a custom, network-controlled robotics platform after its proprietary controller failed. The ESP32 now coordinates the drive motors, steering, display, and status lighting while hosting a low-latency browser controller over WebSockets.</p>
+
+            <div class="project-specs" aria-label="RC car project highlights">
+                <div><span>Controller</span><strong>ESP32</strong></div>
+                <div><span>Drive</span><strong>Dual H-bridge</strong></div>
+                <div><span>Control</span><strong>WebSockets</strong></div>
+                <div><span>Fabrication</span><strong>CAD + 3D print</strong></div>
+            </div>
             
             <h3>Iterations</h3>
             <div class="iterations-timeline">
                 <div class="iteration-step">
-                    <span class="step-date">Iteration 1</span>
-                    <h4>Core Hardware Refit & Base Drive</h4>
-                    <p>Replaced the broken factory receiver board with an ESP32 and dual H-bridge drivers. Configured basic motor pinouts and calibrated the steering servo center line for simple linear driving.</p>
+                    <span class="step-date">01 · Rebuild</span>
+                    <h4>ESP32 Hardware Refit</h4>
+                    <p>Removed the failed factory receiver, wired an ESP32 to dual H-bridge drivers, and brought the drive motor back to life.</p>
                      <video controls muted class="modal-video">
                     <source src="Image/RCcar/RCcar.mov" type="video/mp4">
                     </video>
                 </div>
                 <div class="iteration-step">
-                    <span class="step-date">Iteration 2</span>
+                    <span class="step-date">02 · Control</span>
                     <h4>Web Dashboard & Teleoperation</h4>
-                    <p>Built a local web server utilizing WebSockets for low-latency, full-duplex keyboard controls, transforming the car into a web-driven platform.</p>
+                    <p>Built a local web server with full-duplex WebSocket controls for responsive, multi-key driving from a custom browser dashboard.</p>
+                    <figure class="iteration-interface">
+                        <img src="Image/RCcar/iteration-2-web-controller.jpg" alt="Dark RC Car web controller dashboard showing a connected status, a three-by-three driving control grid, and keyboard and gamepad instructions">
+                        <figcaption>The browser control panel used for keyboard, diagonal-combo, and gamepad driving.</figcaption>
+                    </figure>
                 </div>
                 <div class="iteration-step">
-                    <span class="step-date">Iteration 3</span>
+                    <span class="step-date">03 · Integration</span>
                     <h4>Custom Enclosure & Live Telemetry</h4>
-                    <p>Modeled and 3D-printed a custom chassis enclosure featuring precise thermal ventilation and integrated an onboard display for real-time status telemetry.</p></div>
+                    <p>Designed and 3D-printed the green electronics enclosure, packaging the battery, motor drivers, wiring, ventilation, OLED telemetry screen, and status LEDs into the chassis.</p>
+                    <figure class="iteration-cad">
+                        <img src="Image/RCcar/iteration-3-cad-enclosure.jpg" alt="Isometric CAD model of the custom teal RC car electronics enclosure with its ESP32, power modules, batteries, and motor driver arranged inside">
+                        <figcaption>CAD packaging study before printing — every board, battery, and opening was positioned to fit the rebuilt control system.</figcaption>
+                    </figure>
+                </div>
                 </div>
             </div>
         </div>
@@ -337,6 +399,59 @@
 
     for (let i = 0; i < 15; i++) spawnParticle();
     setInterval(spawnParticle, 4000);
+
+    // ===== TOUCHABLE RC CAR MODEL =====
+    const rcTouchModel = document.querySelector('.rc-touch-model');
+    const rcReadout = document.querySelector('.model-readout');
+    const rcHotspots = document.querySelectorAll('.model-hotspot');
+
+    function setModelTilt(clientX, clientY, strength = 1) {
+        if (!rcTouchModel) return;
+        const bounds = rcTouchModel.getBoundingClientRect();
+        const x = Math.max(0, Math.min(1, (clientX - bounds.left) / bounds.width));
+        const y = Math.max(0, Math.min(1, (clientY - bounds.top) / bounds.height));
+        rcTouchModel.style.setProperty('--tilt-y', ((x - 0.5) * 11 * strength) + 'deg');
+        rcTouchModel.style.setProperty('--tilt-x', ((0.5 - y) * 9 * strength) + 'deg');
+        rcTouchModel.style.setProperty('--shine-x', (x * 100) + '%');
+        rcTouchModel.style.setProperty('--shine-y', (y * 100) + '%');
+    }
+
+    function resetModelTilt() {
+        if (!rcTouchModel) return;
+        rcTouchModel.style.setProperty('--tilt-x', '0deg');
+        rcTouchModel.style.setProperty('--tilt-y', '0deg');
+        rcTouchModel.classList.remove('is-touching');
+    }
+
+    if (rcTouchModel) {
+        rcTouchModel.addEventListener('pointermove', (event) => {
+            if (event.pointerType === 'mouse') setModelTilt(event.clientX, event.clientY);
+        });
+        rcTouchModel.addEventListener('pointerdown', (event) => {
+            rcTouchModel.classList.add('is-touching');
+            setModelTilt(event.clientX, event.clientY, 0.7);
+        });
+        rcTouchModel.addEventListener('pointerup', resetModelTilt);
+        rcTouchModel.addEventListener('pointercancel', resetModelTilt);
+        rcTouchModel.addEventListener('pointerleave', resetModelTilt);
+        rcTouchModel.addEventListener('blur', resetModelTilt);
+    }
+
+    rcHotspots.forEach((hotspot, index) => {
+        hotspot.addEventListener('click', () => {
+            rcHotspots.forEach(item => item.classList.remove('active'));
+            hotspot.classList.add('active');
+            if (!rcReadout) return;
+            rcReadout.querySelector('.readout-number').textContent = String(index + 1).padStart(2, '0');
+            rcReadout.querySelector('strong').textContent = hotspot.dataset.title;
+            rcReadout.querySelector('p').textContent = hotspot.dataset.detail;
+            rcReadout.classList.remove('has-changed');
+            void rcReadout.offsetWidth;
+            rcReadout.classList.add('has-changed');
+        });
+    });
+
+    if (rcHotspots[0]) rcHotspots[0].classList.add('active');
 </script>
 
 </body>
