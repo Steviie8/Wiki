@@ -200,9 +200,149 @@
             <div class="corner-deco bl"></div>
             <div class="corner-deco br"></div>
             <button class="modal-close" onclick="closeModal('MechanicalArmModal')">✕</button>
-            <div class="modal-content"><h2>Mechanical Arm</h2>
-            <div class="divider"></div>
-            <p>A 5-DOF robotic arm built through extensive prototyping and optimization. Learning about joints and tracking from my webcam project, I applied that knowledge to create a precise articulated arm capable of complex movements.</p></div>
+            <div class="modal-content arm-project">
+                <h2>5-DOF Robotic Arm</h2>
+                <div class="divider"></div>
+                <div class="project-kicker arm-kicker">CAD, 3D printing, electronics, and a lot of iteration</div>
+
+                <div class="milestone-card arm-milestone">
+                    <span class="milestone-pulse" aria-hidden="true"></span>
+                    <div>
+                        <span class="milestone-label">Current build status</span>
+                        <strong>Metal servo horns are working; the base drive is the next redesign.</strong>
+                        <p>The arm made it through multiple new servo mounts, a lighter gripper, a wider base, and stronger gear components. I am now addressing base skipping and stability under load.</p>
+                    </div>
+                </div>
+
+                <figure class="arm-hero">
+                    <img src="Image/MechanicalArm/image232.png" alt="CAD model of Steven's articulated robotic arm with a four-legged base, rotating platform, linked segments, and gripper">
+                    <figcaption>The full CAD assembly: a rotating, 3D-printed base with linked joints and a servo-driven gripper.</figcaption>
+                </figure>
+
+                <section class="arm-intro" aria-label="Project overview">
+                    <p>I designed this arm as a 5-degree-of-freedom robotics project and built it one mechanism at a time. The hard part was not only making the arm move; every joint had to fit its servo, hold its position, route wiring, and remain stable as the arm reached farther from the base.</p>
+                    <p>The project became a real test of iterative engineering: CAD a part, print it, find what fails, redesign the weak point, then assemble and test again.</p>
+                </section>
+
+                <div class="project-specs arm-specs" aria-label="Robotic arm project highlights">
+                    <div><span>Motion</span><strong>5 DOF</strong></div>
+                    <div><span>Actuation</span><strong>Servo driven</strong></div>
+                    <div><span>Fabrication</span><strong>CAD + 3D print</strong></div>
+                    <div><span>Focus</span><strong>Fit, load &amp; stability</strong></div>
+                </div>
+
+                <section class="arm-evidence" aria-labelledby="arm-evidence-title">
+                    <div class="arm-section-heading">
+                        <div>
+                            <span class="model-eyebrow">Build evidence</span>
+                            <h3 id="arm-evidence-title">From loose parts to a working arm</h3>
+                        </div>
+                        <span class="arm-annotation" aria-hidden="true">prototype → test → revise</span>
+                    </div>
+                    <div class="arm-evidence-grid">
+                        <figure class="arm-evidence-card cad-card">
+                            <img src="Image/MechanicalArm/IMG_3856.jpg" loading="lazy" alt="A workbench covered with blue 3D-printed robotic-arm parts, including base housings, brackets, and long arm segments">
+                            <figcaption><strong>Print queue</strong><span>Early versions of the base, brackets, and arm segments ready for test fitting.</span></figcaption>
+                        </figure>
+                        <figure class="arm-evidence-card build-card">
+                            <img src="Image/MechanicalArm/IMG_3935.jpg" loading="lazy" alt="An upright assembled robotic arm prototype with wiring connected to its red base and white gripper fingers">
+                            <figcaption><strong>First full assembly</strong><span>The first tall, wired system proved the joints and gripper could work together.</span></figcaption>
+                        </figure>
+                        <figure class="arm-evidence-card base-card">
+                            <img src="Image/MechanicalArm/IMG_4055.jpg" loading="lazy" alt="Robotic arm mounted on a broad white stabilizing base with its servo electronics and controller wired beside it">
+                            <figcaption><strong>Stability revision</strong><span>A wider foot was added to make the arm harder to tip while it moves.</span></figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="arm-motion" aria-labelledby="arm-motion-title">
+                    <div class="arm-section-heading">
+                        <div>
+                            <span class="model-eyebrow">Bench tests</span>
+                            <h3 id="arm-motion-title">Motion checks along the way</h3>
+                        </div>
+                    </div>
+                    <div class="arm-video-grid">
+                        <figure>
+                            <video controls playsinline preload="metadata" class="modal-video">
+                                <source src="Image/MechanicalArm/IMG_3817.mp4" type="video/mp4">
+                            </video>
+                            <figcaption>Early mechanism test.</figcaption>
+                        </figure>
+                        <figure>
+                            <video controls playsinline preload="metadata" class="modal-video">
+                                <source src="Image/MechanicalArm/IMG_3823.mp4" type="video/mp4">
+                            </video>
+                            <figcaption>Rotation and linkage check.</figcaption>
+                        </figure>
+                        <figure>
+                            <video controls playsinline preload="metadata" class="modal-video">
+                                <source src="Image/MechanicalArm/IMG_3862.mp4" type="video/mp4">
+                            </video>
+                            <figcaption>Assembly motion test.</figcaption>
+                        </figure>
+                        <figure>
+                            <video controls playsinline preload="metadata" class="modal-video">
+                                <source src="Image/MechanicalArm/IMG_4050.mp4" type="video/mp4">
+                            </video>
+                            <figcaption>Later build test.</figcaption>
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="arm-journal" aria-labelledby="arm-journal-title">
+                    <span class="model-eyebrow">Build journal · July–August 2026</span>
+                    <h3 id="arm-journal-title">What changed, and why</h3>
+                    <div class="iterations-timeline arm-timeline">
+                        <article class="iteration-step">
+                            <span class="step-date">July 8–10 · First motion</span>
+                            <h4>CAD to a rotating base</h4>
+                            <p>The first CAD links were finished and printed. The base could spin and the arm began moving, but the rear servo-horn support kept popping out. That was the first sign that the joint structure needed more than a basic fit.</p>
+                        </article>
+                        <article class="iteration-step">
+                            <span class="step-date">July 10–12 · Fitment revision</span>
+                            <h4>Servos, horns, and slots had to match the real hardware</h4>
+                            <p>Several printed versions needed to be redone because the servo horn was too small, the servo slots were missing, or the servo bodies would not fit. These prints turned the design from a CAD model into parts sized around the actual components.</p>
+                            <div class="arm-inline-gallery">
+                                <figure><img src="Image/MechanicalArm/IMG_3835.jpg" loading="lazy" alt="Blue circular 3D-printed robotic-arm base piece with a rectangular servo opening and mounting holes"><figcaption>Base housing trial.</figcaption></figure>
+                                <figure><img src="Image/MechanicalArm/IMG_3836.jpg" loading="lazy" alt="Blue 3D-printed servo housings and curved base walls displayed before assembly"><figcaption>Servo-mount iterations.</figcaption></figure>
+                            </div>
+                        </article>
+                        <article class="iteration-step">
+                            <span class="step-date">July 28–August 5 · Stronger hardware</span>
+                            <h4>Rebuilt around better servos and metal gears</h4>
+                            <p>Plastic gears could not hold up, so I replaced them with metal gears and upgraded the servos. New printed parts were also made to give the larger hardware room to fit and to improve wire clearance.</p>
+                            <div class="arm-inline-gallery">
+                                <figure><img src="Image/MechanicalArm/IMG_4004.jpg" loading="lazy" alt="Two black metal-geared servo motors held in a hand"><figcaption>Servo upgrade.</figcaption></figure>
+                                <figure><img src="Image/MechanicalArm/IMG_4042.jpg" loading="lazy" alt="A collection of 3D-printed robotic-arm base parts, brackets, gears, and failed prints"><figcaption>New parts beside the failed versions.</figcaption></figure>
+                            </div>
+                        </article>
+                        <article class="iteration-step">
+                            <span class="step-date">August 5 · End effector</span>
+                            <h4>The gripper worked, but V1 was too large</h4>
+                            <figure class="arm-wide-photo">
+                                <img src="Image/MechanicalArm/IMG_3936.jpg" loading="lazy" alt="Top view of the robotic arm showing its linked blue segments, red mounts, white gripper fingers, servos, and wiring">
+                                <figcaption>Gripper and arm assembly during the move to a lighter end effector.</figcaption>
+                            </figure>
+                            <p>The first gripper could open and close, but it added too much size and weight. I changed to a simpler, lighter V2 so the arm would have less load at the far end.</p>
+                        </article>
+                        <article class="iteration-step">
+                            <span class="step-date">August 5–23 · Stability and load</span>
+                            <h4>More support for the base, bearing, wiring, and drivetrain</h4>
+                            <p>After a fall from the table, the arm needed diagnosis and repair. I added a larger foot to help prevent tipping, glued the bearing after the upper section kept separating under weight, and made room for wires and metal spacers. Metal servo horns improved the joint connection, while the bottom drive is still skipping and is the next mechanism to redesign.</p>
+                            <div class="arm-inline-gallery">
+                                <figure><img src="Image/MechanicalArm/IMG_4043.jpg" loading="lazy" alt="Tall blue and red robotic arm standing upright on a desk with its wiring exposed"><figcaption>Reassembled after structural revisions.</figcaption></figure>
+                                <figure><img src="Image/MechanicalArm/IMG_4181.jpg" loading="lazy" alt="Robotic arm lying on a carpeted floor after falling from a table"><figcaption>One of the setbacks that led to a stronger base.</figcaption></figure>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <div class="arm-takeaway">
+                    <span>What this build taught me</span>
+                    <p>Designing for a real robot means planning for torque, hardware tolerances, wire paths, and the way every extra gram at the gripper affects the base. The failed prints were not wasted—they showed exactly where the next version needed to improve.</p>
+                </div>
+            </div>
         </div>
     </div>
 
